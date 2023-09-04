@@ -14,20 +14,32 @@ def get_user_ip(request):
     forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     return forwarded_for.split(',')[-1].strip() if forwarded_for else request.META.get('REMOTE_ADDR')
 
-def send_telegram(message: str):
+def send_telegram(message: str, uploaded_file=None):
     TOKEN = settings.TELEGRAM_TOKEN
     CHAT_ID = settings.TELEGRAM_CHAT
     
     api = 'https://api.telegram.org/bot'
-    method = api + TOKEN + '/sendMessage'
     
-    req = requests.post(method, data={
-        'chat_id': CHAT_ID,
-        'text': message,
-        'parse_mode': 'HTML'
-    })
-    if req.status_code != 200:
-        print(req.text)
+    # Проверяем, есть ли файл
+    if uploaded_file:
+        method = api + TOKEN + '/sendDocument'
+        params = {
+            'chat_id': CHAT_ID,
+            'caption': message,  # Текстовое описание файла
+        }
+        files = {'document': (uploaded_file.name, uploaded_file)}
+        response = requests.post(method, params=params, files=files)
+    else:
+        method = api + TOKEN + '/sendMessage'
+        params = {
+            'chat_id': CHAT_ID,
+            'text': message,
+            'parse_mode': 'HTML'
+        }
+        response = requests.post(method, data=params)
+
+    if response.status_code != 200:
+        print(response.text)
 
 # Create your views here.
 class VacancyListView(ListView):
@@ -143,10 +155,10 @@ class ApplyToVacancyView(ListView):
         if settings.FORM_SEND_TYPE == 'email':
             send_mail(subject, message, uploaded_file)
         elif settings.FORM_SEND_TYPE == 'tg':
-            send_telegram(f'<b>{subject}</b>\n\n{message}')
+            send_telegram(f'<b>{subject}</b>\n\n{message}', uploaded_file)
         elif settings.FORM_SEND_TYPE == 'email/tg':
             send_mail(subject, message, uploaded_file)
-            send_telegram(f'<b>{subject}</b>\n\n{message}')
+            send_telegram(f'<b>{subject}</b>\n\n{message}', uploaded_file)
             
             
         return redirect(request.META['HTTP_REFERER'])
