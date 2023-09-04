@@ -1,497 +1,85 @@
+{% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Поиск работы по сварке</title>
+  <title>{% block title %}Arrow RSC - Вакансии{% endblock title %}</title>
+  <link rel="icon" type="image/x-icon" href="{% static 'main/img/favicon.jpg' %}">
   <!-- Последняя скомпилированная и минимизированная версия CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="css/all.css" />
+  <link rel="stylesheet" href="{% static 'fa-6-pro/css/all.css' %}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css">
+  <link rel="stylesheet" href="{% static 'main/css/header_styles.css' %}">
   <style>
-        .card {
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.35); /* Параметры тени могут варьироваться */
-            transition: box-shadow 0.3s ease, border-color 0.3 ease; /* Плавное изменение тени при наведении */
-            border: 2pt solid white;
-            border-radius: 15px;
-        }
-        .card:hover {
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.45); /* Изменение тени при наведении */
-            border-color: #0a58ca;
-            -webkit-transition: border-color 0.9s ease-out;
-            -moz-transition: border-color  0.9s ease-out;
-            -o-transition: border-color  0.9s ease-out;
-            transition: border-color  0.9s ease-out;
-          }
-    </style>
-    <style>
-        .custom-card-footer {
-            background-color: transparent; /* Убрать цвет фона */
-            border: none; /* Убрать обводку */
-            border-top: none; /* Убрать верхнюю линию */
-            padding: 0; /* Убрать отступы */
-        }
-        .custom-title-link {
-            color: inherit;
-            text-decoration: none;
-        }
-    
-        .custom-title-link:hover {
-            color: #0a58ca; /* Измененный цвет при наведении */
-            text-decoration: none;
-        }
-        .card-img-top {
-            border-top-left-radius: 13px;
-            border-top-right-radius: 13px;
-        }
-        .custom-salary {
-            font-weight: bold; /* Сделать зарплату жирным */
-            color: #0a58ca; /* Темносиний цвет */
-        }
-        .scroll-container {
-            max-height: 150px;
-            overflow-y: auto;
-            border-radius: 10px;
-            background-color: rgba(0, 0, 0, 0.05);
-            padding: 10px;
-            margin-bottom: 10px;
-            
-            /* Стили для кастомного скроллбара */
-            scrollbar-width: thin;
-            scrollbar-color: #888888 #f0f0f0;
-        }
-        
-        .scroll-container::-webkit-scrollbar {
-            padding-right: 10px;
-            width: 6px;
-        }
-        
-        .scroll-container::-webkit-scrollbar-thumb {
-            background-color: #888888;
-            border-radius: 10px;
-        }
-        
-        .scroll-container::-webkit-scrollbar-track {
-            background-color: #f0f0f0;
-        }
-
-        body {
-            /* Стили для кастомного скроллбара */
-            scrollbar-width: thin;
-            scrollbar-color: #888888 #f0f0f0;
-        }
-        
-        body::-webkit-scrollbar {
-            width: 6px;
-        }
-        
-        body::-webkit-scrollbar-thumb {
-            background-color: #888888;
-            border-radius: 10px;
-        }
-        
-        body::-webkit-scrollbar-track {
-            background-color: #f0f0f0;
-        }
-
-        .header {
-            position: relative;
-            background-color: rgba(0, 0, 0, 0.3); /* Полупрозрачный фон */
-            backdrop-filter: blur(10px); /* Эффект размытия фона */
-            z-index: 1000; /* Переместить вперед для отображения над остальным контентом */
-        }
-        
-        .navbar {
-            padding: 5pt 0;
-        }
-        .navbar-nav {
-            display: flex;
-            align-items: center;
-        }
-        .navbar-nav .nav-item {
-            position: relative;
-        }
-        .navbar-nav li a {
-            position: relative;
-        }
-        
-        .navbar-nav li a::before,
-        .navbar-nav li a::after {
-            content: "";
-            position: absolute;
-            bottom: 4px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 1.5px;
-            transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
-        }
-        
-        .navbar-nav li.selected a::before,
-        .navbar-nav li a:hover::before {
-            width: 80%;
-            background-color: white; /* Цвет при выбранном состоянии и наведении */
-        }
-        
-        .navbar-nav li a:hover::after {
-            width: 80%;
-            background-color: blue; /* Цвет при наведении */
-        }
-
-        .navbar-brand img {
-            height: 35pt; /* Размер вашего SVG-логотипа */
-        }
-
-       
-        .image-wrapper {
-            position: absolute;
-            top: 0;
-            left: 0;
-            margin: 0;
-            padding: 0;
-            border: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* Помещаем под контентом */
-        }
-        
-        .image-wrapper img {
-            display: block;
-            height: 100vh;
-            width: 100%;
-            object-fit: cover;
-        }
-        @media (max-width: 767px) {
-            .image-wrapper img {
-                content: url("https://profi-personal.com.ua/storage/app/media/promo-mob.png");
-                width: 100%;
-            }
-        }
-
-        .content-wrapper {
-            position: absolute;
-            top: 101vh; /* Перемещаем контент ниже на 10vh */
-        }
-
-        #phone, #name { 
-            width: 500px;
-        }
-        
-        #name { 
-            margin-bottom: 5pt;
-        }
-        
-        @media (max-width: 991px) {
-            #phone, #name {
-                width: 300px; /* Или другое значение, если вы хотите изменить ширину на меньших экранах */
-            }
-        }
-        
-        @media (max-width: 767px) {
-            #phone, #name {
-                width: 250px; /* Или другое значение, если вы хотите изменить ширину на меньших экранах */
-            }
-        }
-    </style>
+    .iti.iti--allow-dropdown.iti--show-flags {
+        width: 100%
+    }
+  </style>
+  {% block static %}
+  {% endblock static %}
 </head>
-<body>  
+<body class="d-flex flex-column h-100">
+    {% block header %}
     <header class="header">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
-                <a class="navbar-brand" href="#">
-                    <img src="chrome_dQqHgTJuj2.png"></img>
+                <a class="navbar-brand" href="/">
+                    {% comment %} <img src="{% static 'main/img/logo.png' %}"></img> {% endcomment %}
+                    {% comment %} <i class="fa-regular fa-briefcase" style="color: #0a58ca; font-size: 2rem;"></i> {% endcomment %}
+                    <h2 style="color: #FFFFFF; font-size: 2rem;">ARROW RSC</h2>
                 </a>
                 <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item selected"><a class="nav-link text-white" href="#">Вакансии</a></li>
-                        <li class="nav-item"><a class="nav-link text-light" href="#">Главная</a></li>
-                        <li class="nav-item"><a class="nav-link text-light" href="#">Гарантии</a></li>
-                        <li class="nav-item"><a class="nav-link text-light" href="#">Новости</a></li>
-                        <li class="nav-item"><a class="nav-link text-light" href="#">О нас</a></li>
-                        <li class="nav-item"><a class="nav-link text-light" href="#">Контакты</a></li>
+                        <li class="nav-item {% if selected_nav_name == 'vacancies' %}selected{% endif %}"><a class="nav-link text-white" href="{% url 'vacancy:list' %}">Вакансии</a></li>
+                        <li class="nav-item {% if selected_nav_name == 'guaranties' %}selected{% endif %}"><a class="nav-link text-light" href="{% url 'info:waranty' %}">Гарантии</a></li>
+                        <li class="nav-item {% if selected_nav_name == 'a_us' %}selected{% endif %}"><a class="nav-link text-light" href="{% url 'info:about_us' %}">О нас</a></li>
+                        <li class="nav-item {% if selected_nav_name == 'contats' %}selected{% endif %}"><a class="nav-link text-light" href="{% url 'info:contacts' %}">Контакты</a></li>
+                        <li class="nav-item d-block d-lg-none">
+                            <button class="btn btn-primary btn-block mt-3" data-bs-toggle="modal" data-bs-target="#applyModal">Связаться</button>
+                        </li>
+                        <li class="nav-item d-block d-lg-none">
+                            <button class="btn btn-secondary btn-block mt-3" data-bs-toggle="modal" data-bs-target="#applyPartnerModal">Стать партнером</button>
+                        </li>
                     </ul>
+                    <div class="ml-lg-3 d-none d-lg-block">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#applyModal">Связаться</button>
+                        <button class="btn btn-secondary ml-2" data-bs-toggle="modal" data-bs-target="#applyPartnerModal">Стать партнером</button>
+                    </div>
                 </div>
             </nav>
         </div>
     </header>
-    <div class="image-wrapper">
-        <img class="img-responsive" src="https://profi-personal.com.ua/storage/app/media/promo.png.webp" alt="Фото">
-    </div>
-    <div class="container-fluid p-5 mt-md-5 mt-sm-2">
-        <div class="row">
-            <div class="col-md-7 mt-md-5">
-                <h1 class="text-white mt-md-5"><strong>Работа в Польше</strong></h1>
-                <h1 class="text-white">У нас более 1000 вакансий</h1>
-                <div class="mt-md-5">
-                    <div class="card mt-5">
-                        <div class="card-body">
-                            <h4><strong>Не нашли подходящую вакансию?</strong></h4> 
-                            <h5>Оставьте ваши контакты – мы подберем для вас идеальную работу.</h5>
-                            <form method='get'>
-                                <input class="form-control phone-input" type="text" placeholder="Ваше Имя" aria-label="default input example" id='name'>
-                                <input class="form-control" type="text" placeholder="Номер телефона" aria-label="default input example" id='phone'>
-                                <div class="row">
-                                    <div class='col-md-8 col-sm-12'>
-                                        <div class="form-check mt-2">
-                                            <input class="form-check-input" type="checkbox" id="check1" name="location" value="something1">
-                                            <label class="form-check-label" style='font-size: 8pt;'>Я даю согласие на обработку моих персональных данных компанией Profi Personal Sp. з о. о. с местонахождением в Варшаве, ул. Grzybowska 2/42 00-131, чтобы ответить на запрос. Предоставление данных является добровольным, но необходимым для обработка запроса и предоставление услуги. Подробная информация об объеме и целях обработки данных нами персональные данные и права субъектов данных можно найти в нашей политике конфиденциальности.</label>
-                                        </div>
-                                    </div>
-                                    <div class='col-md-4 col-sm-12 mt-sm-3'>
-                                        <button type="submit" class="btn-lg btn-secondary w-100"><strong>Оставить заявку</strong></button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% endblock header %}
+    {% block image_wrapper %}
+    {% endblock image_wrapper %}
 
     
-    
-    
-    <div class="content-wrapper">
-        <div class="container-fluid p-3">
-            <div class="row">
-              <div class="col-md-3 order-md-1 mt-2">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <a href="#" class="custom-title-link"><i class="fa-regular fa-filters" style="color: #0a58ca;"></i> Фильтр</a>
-                        </h5>
-                        <form method='get'>
-                            <label for="profession"> <i class="fa-regular fa-user-helmet-safety" style="color: #0a58ca;"></i> <strong>Специальность:</strong></label>
-                            <div class="scroll-container" id="profession">
-                              <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" id="check1" name="location" value="something1">
-                                  <label class="form-check-label">Город1</label>
-                              </div>
-                              <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" id="check2" name="location" value="something2">
-                                  <label class="form-check-label">Город2</label>
-                              </div>
-                              <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" id="check2" name="location" value="something3">
-                                  <label class="form-check-label">Город3</label>
-                              </div>
-                              <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="check2" name="location" value="something3">
-                                <label class="form-check-label">Город4</label>
-                                </div>
-        
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="check2" name="location" value="something3">
-                                    <label class="form-check-label">Город5</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="check2" name="location" value="something3">
-                                    <label class="form-check-label">Город6</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="check2" name="location" value="something3">
-                                    <label class="form-check-label">Город7</label>
-                                </div>
-        
-                            </div>
-                            <label for="location"> <i class="fa-regular fa-location-dot " style="color: #0a58ca;"></i> <strong>Местоположение:</strong></label>
-                            <div class="scroll-container" id="location">
-                              <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" id="check1" name="location" value="something1">
-                                  <label class="form-check-label">Город1</label>
-                              </div>
-                              <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" id="check2" name="location" value="something2">
-                                  <label class="form-check-label">Город2</label>
-                              </div>
-                              <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" id="check2" name="location" value="something3">
-                                  <label class="form-check-label">Город3</label>
-                              </div>
-                              <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="check2" name="location" value="something3">
-                                <label class="form-check-label">Город4</label>
-                                </div>
-        
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="check2" name="location" value="something3">
-                                    <label class="form-check-label">Город5</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="check2" name="location" value="something3">
-                                    <label class="form-check-label">Город6</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="check2" name="location" value="something3">
-                                    <label class="form-check-label">Город7</label>
-                                </div>
-        
-                            </div>
-                            
-                            <label for="location"><i class="fa-regular fa-user-group" style="color: #0a58ca;"></i> <strong>Пол:</strong></label>
-                            <div class="scroll-container" id="location">
-                              <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" id="check1ses" name="sex" value="something1sex">
-                                  <label class="form-check-label">Мужской</label>
-                              </div>
-                              <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" id="check2ses" name="sex" value="something2sex">
-                                  <label class="form-check-label">Женский</label>
-                              </div>
-                              <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" id="check3sex" name="sex" value="something3sex">
-                                  <label class="form-check-label">Семейная пара</label>
-                              </div>
-                            </div>
-                            <div class="row">
-                                <div class='col-md-6 col-sm-12 mt-2'>
-                                    <button type="submit" class="btn-lg btn-primary w-100">Подтвердить</button>
-                                </div>
-                                <div class='col-md-6 col-sm-12 mt-2'>
-                                    <button type="submit" class="btn-lg btn-outline-secondary w-100">Очистить</button>
-                                </div>
-                            </div>
-                          </form>
-                    </div>
-        
-                    
-                </div>
-                
-              </div>
-              <div class="col-md-9 order-md-2 mt-2">
-                <div class='container'>
-                    <h4>Результаты поиска</h4>
-                    <div class="card-columns">
-                        <div class="card">
-                            <img src="https://profi-personal.com.ua/storage/app/resources/resize/img_6e1481228caec2c615d07ed0862d8c7d_432_153_0_0_crop.png.webp" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <a href="#" class="custom-title-link">Работа на крупнейшем в Европе складе</a>
-                                </h5>
-                                <div class="card-footer custom-card-footer">
-                                    <div class="card-text"><i class="bi bi-geo-alt custom-salary"></i> Mazowieckie, Nowy Dwór</div>
-                                    <div class="mt-4 d-flex flex-column flex-md-row justify-content-md-between align-items-md-center">
-                                        <div class="order-md-1 order-sm-2 mb-2 mb-md-0">
-                                            <span class="custom-salary"><i class="bi bi-cash-coin"></i> 4500-6000 zł</span>
-                                        </div>
-                                        <div class="order-md-2 order-sm-1">
-                                            <a href="#" class="btn btn-outline-dark">Подробнее</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="https://profi-personal.com.ua/storage/app/resources/resize/img_0c1fe4886cc0ef0bc4414ba82cc33e6c_432_153_0_0_crop.png.webp" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <a href="#" class="custom-title-link">Работа на крупнейшем в Европе складе</a>
-                                </h5>
-                                <div class="card-footer custom-card-footer">
-                                    <div class="card-text"><i class="bi bi-geo-alt custom-salary"></i> Mazowieckie, Nowy Dwór</div>
-                                    <div class='mt-4 d-flex justify-content-between align-items-center'>
-                                        <span style="margin-top: 2pt;" class="custom-salary"> <i class="bi bi-cash-coin"></i> 4500-6000 zł</span>
-                                        <a href="#" class="btn btn-outline-dark">Подробнее</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="https://profi-personal.com.ua/storage/app/resources/resize/img_6e1481228caec2c615d07ed0862d8c7d_432_153_0_0_crop.png.webp" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <a href="#" class="custom-title-link">Работа на крупнейшем в Европе складе</a>
-                                </h5>
-                                <div class="card-footer custom-card-footer">
-                                    <div class="card-text"><i class="bi bi-geo-alt custom-salary"></i> Mazowieckie, Nowy Dwór</div>
-                                    <div class='mt-4 d-flex justify-content-between align-items-center'>
-                                        <span style="margin-top: 2pt;" class="custom-salary"> <i class="bi bi-cash-coin"></i> 4500-6000 zł</span>
-                                        <a href="#" class="btn btn-outline-dark">Подробнее</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="https://profi-personal.com.ua/storage/app/resources/resize/img_6e1481228caec2c615d07ed0862d8c7d_432_153_0_0_crop.png.webp" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <a href="#" class="custom-title-link">Работа на крупнейшем в Европе складе</a>
-                                </h5>
-                                <div class="card-footer custom-card-footer">
-                                    <div class="card-text"><i class="bi bi-geo-alt custom-salary"></i> Mazowieckie, Nowy Dwór</div>
-                                    <div class='mt-4 d-flex justify-content-between align-items-center'>
-                                        <span style="margin-top: 2pt;" class="custom-salary"> <i class="bi bi-cash-coin"></i> 4500-6000 zł</span>
-                                        <a href="#" class="btn btn-outline-dark">Подробнее</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="https://profi-personal.com.ua/storage/app/resources/resize/img_6e1481228caec2c615d07ed0862d8c7d_432_153_0_0_crop.png.webp" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <a href="#" class="custom-title-link">Работа на крупнейшем в Европе складе</a>
-                                </h5>
-                                <div class="card-footer custom-card-footer">
-                                    <div class="card-text"><i class="bi bi-geo-alt custom-salary"></i> Mazowieckie, Nowy Dwór</div>
-                                    <div class='mt-4 d-flex justify-content-between align-items-center'>
-                                        <span style="margin-top: 2pt;" class="custom-salary"> <i class="bi bi-cash-coin"></i> 4500-6000 zł</span>
-                                        <a href="#" class="btn btn-outline-dark">Подробнее</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="https://profi-personal.com.ua/storage/app/resources/resize/img_6e1481228caec2c615d07ed0862d8c7d_432_153_0_0_crop.png.webp" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <a href="#" class="custom-title-link">Работа на крупнейшем в Европе складе</a>
-                                </h5>
-                                <div class="card-footer custom-card-footer">
-                                    <div class="card-text"><i class="bi bi-geo-alt custom-salary"></i> Mazowieckie, Nowy Dwór</div>
-                                    <div class='mt-4 d-flex justify-content-between align-items-center'>
-                                        <span style="margin-top: 2pt;" class="custom-salary"> <i class="bi bi-cash-coin"></i> 4500-6000 zł</span>
-                                        <a href="#" class="btn btn-outline-dark">Подробнее</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="https://profi-personal.com.ua/storage/app/resources/resize/img_6e1481228caec2c615d07ed0862d8c7d_432_153_0_0_crop.png.webp" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <a href="#" class="custom-title-link">Работа на крупнейшем в Европе складе</a>
-                                </h5>
-                                <div class="card-footer custom-card-footer">
-                                    <div class="card-text"><i class="bi bi-geo-alt custom-salary"></i> Mazowieckie, Nowy Dwór</div>
-                                    <div class='mt-4 d-flex justify-content-between align-items-center'>
-                                        <span style="margin-top: 2pt;" class="custom-salary"> <i class="bi bi-cash-coin"></i> 4500-6000 zł</span>
-                                        <a href="#" class="btn btn-outline-dark">Подробнее</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Здесь другие карточки -->
-              </div>
-            </div>
-          </div>
+    <div class="content-wrapper my-auto" style='width:100%'>
+        {% block content_wrapper %}
+        {% endblock content_wrapper %}
+        {% block apply_modal_block %}
+        {% include 'apply_modal.html' with show_resume_modal=True apply_modal_title='Заявка на обратную связь' apply_modal_id='applyModal'%}
+        {% include 'apply_modal.html' with show_resume_modal=False apply_modal_title='Заявка на становление партнером' apply_modal_id='applyPartnerModal' want_partner=True%}
+        {% endblock apply_modal_block %}
+        {% include 'footer.html' %}
     </div>
   
-
+    
   <!-- Последняя скомпилированная и минимизированная версия JavaScript -->
   <!-- Подключите этот скрипт перед закрывающим тегом body -->
   <!-- Этот скрипт нужен для работы некоторых компонентов bootstrap5, таких как выпадающие меню, модальные окна и т.д. -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"></script>
+  
     <script>
         const regularIcons = document.querySelectorAll(".fa-regular");
     
@@ -518,13 +106,18 @@
             prevScrollPos = currentScrollPos;
         });
     </script>    
+    
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
     <script>
-    const input = document.querySelector("#phone");
-    window.intlTelInput(input, {
-        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
-        preferredCountries: ['pl', 'uk']
-    });
+        const phoneNumberInputs = document.querySelectorAll(".phone-number-input");
+        
+        phoneNumberInputs.forEach(input => {
+            window.intlTelInput(input, {
+                utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
+                preferredCountries: ['pl', 'ua']
+            });
+        });
     </script>
+    {% block scripts %}{% endblock scripts %}
 </body>
 </html>

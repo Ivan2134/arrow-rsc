@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,13 +23,26 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qo%e3#&v#qev#+$8rljz^2hg(akpar40rhuisj(e-tw4kmapdz'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if os.getenv('DEBUG') == 'True':
+    DEBUG = True
+else:
+    DEBUG = False
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['10.1.173.3', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = [
+    'http://invilso.pp.ua',
+    'http://*.127.0.0.1',
+    'https://invilso.pp.ua',
+    'https://*.127.0.0.1', 
+    'http://api.vk-proxy.invilso.pp.ua', 
+    'http://arrow-rsc.work', 
+    'https://arrow-rsc.work', 
+    'https://*.arrow-rsc.work', 
+    'http://*.arrow-rsc.work'
+]
 
 # Application definition
 
@@ -39,7 +54,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'vacancy',
-    'home'
+    'home',
+    'info_pages',
+    'tinymce',
+    'gsheets',
+    'imagekit'
 ]
 
 MIDDLEWARE = [
@@ -57,7 +76,7 @@ ROOT_URLCONF = 'arrow_rsc.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -65,6 +84,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'arrow_rsc.context_processors.legal_docs',
             ],
         },
     },
@@ -78,8 +98,12 @@ WSGI_APPLICATION = 'arrow_rsc.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': os.getenv('DB_ENGINE'),
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
     }
 }
 
@@ -106,7 +130,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 
@@ -134,3 +158,18 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com' 
+EMAIL_PORT = 587 
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.getenv('SMTP_LOGIN')
+EMAIL_HOST_PASSWORD = os.getenv('SMTP_PASSWORD')
+
+
+TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN') 
+TELEGRAM_CHAT = os.getenv('TELEGRAM_CHAT_ID')
+
+FORM_SEND_TYPE = os.getenv('FORM_SEND_TYPE')
+FORM_SEND_MAIL = os.getenv('FORM_SEND_MAIL')

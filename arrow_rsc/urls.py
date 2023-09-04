@@ -16,11 +16,15 @@ Including another URLconf
 """
 from django.conf import settings
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from django.conf.urls.static import static  
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('vacancy/', include('vacancy.urls', namespace = 'vacancy')),
+    path('info/', include('info_pages.urls', namespace = 'info')),
+    path('', include('vacancy.urls', namespace='vacancy_main')),
+    path('tinymce/', include('tinymce.urls')),
 ]
 
 if settings.DEBUG:
