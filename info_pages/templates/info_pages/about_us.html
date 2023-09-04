@@ -201,14 +201,16 @@ body {
             <button class="btn btn-outline-secondary"><i class="fa-regular fa-arrow-left"></i></button>
           </div>  
           {% endif %}
-          <div class='col-10 mx-auto responsive-slides'>
+          <div class='col-md-10 col-12 mx-auto responsive-slides'>
             {% for teamate in team %}
             <div class='text-center mx-2'>
               <div class="embed-responsive embed-responsive-1by1 my-2 mt-4">
                 <img src="{{teamate.photo.file_thumbnail_avatar.url}}" class="embed-responsive-item image-crop" alt="Responsive image">
               </div>
-              <span><b>{{teamate.name}}</b></span>
-              <span>{{teamate.position}}</span>
+              <div class='p-2'>
+                <span class="d-block"><b>{{teamate.name}}</b></span>
+                <span class="d-block">{{teamate.position}}</span>
+              </div>
             </div>
             {% endfor %}
           </div>
@@ -237,14 +239,14 @@ body {
     infinite: false,
     speed: 300,
     autoplay: true,
-    slidesToShow: 8,
+    slidesToShow: 6,
     slidesToScroll: 2,
     responsive: [
         {
             breakpoint: 1024,
             settings: {
-                slidesToShow: 6,
-                slidesToScroll: 6,
+                slidesToShow: 4,
+                slidesToScroll: 2,
                 infinite: true,
                 dots: true
             }
@@ -252,15 +254,15 @@ body {
         {
             breakpoint: 600,
             settings: {
-                slidesToShow: 4,
-                slidesToScroll: 4
+                slidesToShow: 2,
+                slidesToScroll: 1
             }
         },
         {
             breakpoint: 480,
             settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2
+                slidesToShow: 1,
+                slidesToScroll: 1
             }
         }
     ]
