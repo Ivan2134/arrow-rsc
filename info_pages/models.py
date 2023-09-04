@@ -74,8 +74,8 @@ class SocialNetwork(models.Model):
 class ContactInfo(models.Model):
     phones = models.ManyToManyField(PhoneNumber, verbose_name="Номера телефонов")
     social_networks = models.ManyToManyField(SocialNetwork, verbose_name="Социальные сети")
-    address = models.CharField(max_length=50, verbose_name='Запрос для поиска в Google Maps')
-    address_url = models.CharField(max_length=50, verbose_name='URL встройки GMaps', null=True, blank=True)
+    address = models.CharField(max_length=150, verbose_name='Запрос для поиска в Google Maps')
+    address_url = models.CharField(max_length=150, verbose_name='URL встройки GMaps', null=True, blank=True)
     
     def __str__(self):
         return f'{self.address} | Больше не добавляйте'
