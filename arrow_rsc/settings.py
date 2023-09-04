@@ -31,7 +31,7 @@ if os.getenv('DEBUG') == 'True':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['10.1.173.3', '127.0.0.1']
+ALLOWED_HOSTS = ['10.1.173.3', '127.0.0.1', 'arrow-rsc.work']
 CSRF_TRUSTED_ORIGINS = [
     'http://invilso.pp.ua',
     'http://*.127.0.0.1',
