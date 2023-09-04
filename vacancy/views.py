@@ -26,6 +26,7 @@ def send_telegram(message: str, uploaded_file=None):
         params = {
             'chat_id': CHAT_ID,
             'caption': message,  # Текстовое описание файла
+            'parse_mode': 'HTML'
         }
         files = {'document': (uploaded_file.name, uploaded_file)}
         response = requests.post(method, params=params, files=files)
