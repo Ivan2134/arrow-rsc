@@ -13,12 +13,16 @@
             </div>
             <div class="col-12 col-lg-2 d-flex flex-column">
                 
-                <h5 class="text-light mb-0" id='contacts_base'>Контакты</h5>
-                <a class="link-secondary text-secondary link-underline-opacity-0" style='text-decoration: none;' href="tel:48533661948">
-                    <div class="link-secondary text-secondary link-underline-opacity-0">Отдел рекрутинга</div>
-                    tel. +48 533 661 948
-                </a>
-                <a class="link-secondary text-secondary link-underline-opacity-0" style='text-decoration: none;' href="https://www.linkedin.com/company/arrow-rsc-sp-z-o-o">LinkedIn</a>
+                <h5 class="text-light mb-0" id='contacts_base'>Мы в соц. сетях</h5>
+                <div class='row mx-2 mt-2'>
+                    <div class='col-11 mx-auto'>
+                        {% for network in socials_footer %}
+                        <a href="{{ network.link }}" target="_blank" class="btn btn-secondary btn-circle p-1 d-inline-flex" style=' border-radius: 500px'>
+                            <i class="fab fa-{{network.name}}" style='font-size: 1.1rem;'></i>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
             <hr class="col-11 col-lg-7 text-white-50 my-2">
             <p class="text-light text-center mb-0">&copy; 2023 Arrow RSC</p>

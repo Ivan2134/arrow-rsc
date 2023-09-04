@@ -85,6 +85,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'arrow_rsc.context_processors.legal_docs',
+                'arrow_rsc.context_processors.socials_footer',
             ],
         },
     },
