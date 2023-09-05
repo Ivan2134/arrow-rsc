@@ -1,7 +1,7 @@
 import datetime
 from django.db import models
 from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFill
+from imagekit.processors import ResizeToFill, ResizeToFit
 import urllib.parse
 
 
@@ -18,7 +18,7 @@ class Photo(models.Model):
                                       format='JPEG',
                                       options={'quality': 80})
     file_thumbnail_partner = ImageSpecField(source='file',
-                                      processors=[ResizeToFill(150, 150)],
+                                      processors=[ResizeToFit(height=150)],
                                       format='JPEG',
                                       options={'quality': 80})
     

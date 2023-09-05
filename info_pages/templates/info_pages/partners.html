@@ -7,11 +7,11 @@
       <button class="btn btn-outline-secondary"><i class="fa-regular fa-arrow-left"></i></button>
     </div>  
     {% endif %}
-    <div class='col-10 mx-auto responsive-slides'>
+    <div class='col-10 mx-auto variable-width'>
       {% for partner in partners %}
       <div class='text-center mx-2'>
-        <a class="embed-responsive embed-responsive-1by1 my-2">
-          <img src="{{partner.photo.file_thumbnail_partner.url}}" class="embed-responsive-item image-crop" alt="Responsive image">
+        <a class="my-2">
+          <img src="{{partner.photo.file_thumbnail_partner.url}}" class="image-crop" style='height: 150px' alt="Responsive image">
         </a>
       </div>
       {% endfor %}
