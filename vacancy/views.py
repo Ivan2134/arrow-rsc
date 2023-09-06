@@ -14,9 +14,7 @@ def get_user_ip(request):
     forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     return forwarded_for.split(',')[-1].strip() if forwarded_for else request.META.get('REMOTE_ADDR')
 
-def send_telegram(message: str, uploaded_file=None):
-    TOKEN = settings.TELEGRAM_TOKEN
-    CHAT_ID = settings.TELEGRAM_CHAT
+def send_telegram(message: str, uploaded_file=None, TOKEN=settings.TELEGRAM_TOKEN, CHAT_ID=settings.TELEGRAM_CHAT):
     
     api = 'https://api.telegram.org/bot'
     
@@ -156,7 +154,10 @@ class ApplyToVacancyView(ListView):
         if settings.FORM_SEND_TYPE == 'email':
             send_mail(subject, message, uploaded_file)
         elif settings.FORM_SEND_TYPE == 'tg':
-            send_telegram(f'<b>{subject}</b>\n\n{message}', uploaded_file)
+            if want_partner != '': 
+                send_telegram(f'<b>{subject}</b>\n\n{message}', uploaded_file, CHAT_ID=settings.PARTNER_CHATID_TG)
+            else:
+                send_telegram(f'<b>{subject}</b>\n\n{message}', uploaded_file)
         elif settings.FORM_SEND_TYPE == 'email/tg':
             send_mail(subject, message, uploaded_file)
             send_telegram(f'<b>{subject}</b>\n\n{message}', uploaded_file)
