@@ -118,6 +118,32 @@
             });
         });
     </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const forms = document.querySelectorAll("form");
+        
+            forms.forEach(function (form) {
+                form.addEventListener("submit", function (event) {
+                    const nameInput = form.querySelector("#name");
+                    const phoneInput = form.querySelector("input[name='phone']");
+                    const checkbox = form.querySelector("#check1");
+        
+                    if (!nameInput.value.trim()) {
+                        alert("Пожалуйста, введите ваше имя.");
+                        event.preventDefault();
+                    } else if (!phoneInput.value.trim()) {
+                        alert("Пожалуйста, введите ваш номер телефона.");
+                        event.preventDefault();
+                    } else if (!checkbox.checked) {
+                        alert("Пожалуйста, отметьте галочку о согласии на обработку данных.");
+                        event.preventDefault();
+                    }
+                });
+            });
+        });
+        </script>
+              
     {% block scripts %}{% endblock scripts %}
 </body>
 </html>
