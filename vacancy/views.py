@@ -130,6 +130,12 @@ class ApplyToVacancyView(ListView):
         v_id = request.POST.get('v_id', '')
         want_partner = request.POST.get('want_partner', '')
         
+        if name == '' or name == 'Неизвестный':
+            return redirect(request.META['HTTP_REFERER'])
+            
+        if phone == '' or phone == 'Не указанно':
+            return redirect(request.META['HTTP_REFERER'])
+            
         if vacancy_info == '':
             if v_id != '':
                 v_id = int(v_id)
