@@ -107,14 +107,22 @@
         });
     </script>    
     
-    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/intlTelInput.min.js"></script>
     <script>
-        const phoneNumberInputs = document.querySelectorAll(".phone-number-input");
+        const phoneNumberInputs = document.querySelectorAll("input[name='phone']");
         
         phoneNumberInputs.forEach(input => {
-            window.intlTelInput(input, {
-                utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
-                preferredCountries: ['pl', 'ua']
+            const iti = window.intlTelInput(input, {
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/utils.min.js",
+                preferredCountries: ['pl', 'ua'],
+            });
+            input.addEventListener("input", function() {
+                const phoneNumber = input.value;
+                const isValid = iti.isValidNumber();
+                
+                if (isValid) {
+                    iti.setNumber(phoneNumber);
+                }
             });
         });
     </script>
@@ -128,21 +136,30 @@
                     const nameInput = form.querySelector("#name");
                     const phoneInput = form.querySelector("input[name='phone']");
                     const checkbox = form.querySelector("#check1");
-        
+                    const iti = window.intlTelInputGlobals.getInstance(phoneInput);
+                    const phoneNumber = iti.getNumber();
                     if (!nameInput.value.trim()) {
                         alert("Пожалуйста, введите ваше имя.");
                         event.preventDefault();
-                    } else if (!phoneInput.value.trim()) {
+                    } else if (!phoneNumber) {
                         alert("Пожалуйста, введите ваш номер телефона.");
                         event.preventDefault();
                     } else if (!checkbox.checked) {
                         alert("Пожалуйста, отметьте галочку о согласии на обработку данных.");
                         event.preventDefault();
                     }
+                    if (!iti.isValidNumber()) {
+                        alert("Пожалуйста, введите номер телефона в верном формате и выберите страну.");
+                        event.preventDefault();
+                    }
+                    if (!iti.isValidNumber()) {
+                        phoneInput.value = phoneNumber;
+                    } 
                 });
             });
         });
-        </script>
+    </script>
+
               
     {% block scripts %}{% endblock scripts %}
 </body>

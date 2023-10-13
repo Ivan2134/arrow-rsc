@@ -173,12 +173,12 @@ $(document).ready(function() {
   });
 });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+{% comment %} <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
 <script>
     const input = document.querySelector("#phone");
     window.intlTelInput(input, {
         utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
         preferredCountries: ['pl', 'uk', 'ua']
     });
-</script>
+</script> {% endcomment %}
 {% endblock scripts %}

@@ -265,6 +265,17 @@ body {
                 {% endfor %}
               </div>
             </div>
+            <div class="mb-2 reviewstars">
+              <div class='mb-1 masterstar p-2' style='position: relative;'>
+                <span style='font-size: 1.2rem; padding-left: 3pt;'> <i class="far fa-screwdriver-wrench"></i> <strong>Требования</strong></span>
+                <i class="fa-regular fa-chevron-down position-absolute end-0 p-2"></i> 
+              </div>
+              <div class='mb-1 mx-3 slavestar'>
+                {% for duty in vacancy.requirements.all %}
+                <div><i class="fa-solid fa-circle-small" style='font-size: 0.7rem;'></i> {{duty}}</div>
+                {% endfor %}
+              </div>
+            </div>
             <div class="text-center"> <!-- Добавлен контейнер для центрирования -->
               <button type="button" class="btn btn-primary custom-btn-xl" data-bs-toggle="modal" data-bs-target="#applyVacancyModal">Подать заявку</button>
             </div>
@@ -298,12 +309,12 @@ $(document).ready(function() {
   });
 });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+{% comment %} <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
 <script>
     const input = document.querySelector("#phone");
     window.intlTelInput(input, {
         utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
         preferredCountries: ['pl', 'uk']
     });
-</script>
+</script> {% endcomment %}
 {% endblock scripts %}

@@ -136,6 +136,16 @@ class WorkDuty(models.Model):
         verbose_name = 'Обязанность по работе'
         verbose_name_plural = 'Обязанности по работе'
         
+class Requirement(models.Model):
+    description = models.TextField(verbose_name='Описание требования', unique=True)
+
+    def __str__(self):
+        return self.description
+
+    class Meta:
+        verbose_name = 'Требование к кандидату'
+        verbose_name_plural = 'Требования к кандидатам'
+        
 class HourlyPaymentOption(models.Model):
     payment_type = models.CharField(max_length=100, verbose_name='Тип оплаты (для студентов, ночные, испытательный и тд.)')
     hourly_rate = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Почасовая ставка')
@@ -172,6 +182,7 @@ class Vacancy(models.Model):
     salary_per_hour_fixed = models.FloatField(verbose_name='Ставка почасовая (если нет месячной) (zlot)', null=True, blank=True)
     salary_is_netto = models.BooleanField(verbose_name='Зарплата netto?', default=True)
     work_duties = models.ManyToManyField(WorkDuty, verbose_name='Обязанности по работе')
+    requirements = models.ManyToManyField(Requirement, verbose_name='Требования к кандидату', blank=True)
     work_schedule = models.TextField(verbose_name='График работы', blank=True, null=True)
     date_time = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     date_time_update = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')

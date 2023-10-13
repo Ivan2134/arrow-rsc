@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import State, City, Sex, InfoLabel, Category, Index, Photo, Video, WorkDuty, \
-    HourlyPaymentOption, View, Vacancy
+    HourlyPaymentOption, View, Vacancy, Requirement
     
 from tinymce.widgets import TinyMCE
 from django.db import models
@@ -42,6 +42,10 @@ class VideoAdmin(admin.ModelAdmin):
 @admin.register(WorkDuty)
 class WorkDutyAdmin(admin.ModelAdmin):
     list_display = ('description',)
+    
+@admin.register(Requirement)
+class RequirementAdmin(admin.ModelAdmin):
+    list_display = ('description',)
 
 @admin.register(HourlyPaymentOption)
 class HourlyPaymentOptionAdmin(admin.ModelAdmin):
@@ -57,7 +61,7 @@ class VacancyAdmin(admin.ModelAdmin):
     list_filter = ('city', 'state', 'category', 'sex')
     search_fields = ('name', 'city__name', 'index__name', 'category__name')
 
-    filter_horizontal = ('photos', 'salary_per_hour', 'work_duties', 'sex', 'views')
+    filter_horizontal = ('photos', 'salary_per_hour', 'work_duties', 'requirements', 'sex', 'views')
     readonly_fields = ('embeded', 'views', 'date_time', 'date_time_update')
     
     formfield_overrides = {
@@ -75,7 +79,7 @@ class VacancyAdmin(admin.ModelAdmin):
             'fields': ('info_label', 'salary_per_hour', 'salary_per_mounth_min', 'salary_per_mounth_max', 'salary_per_mounth_fixed', 'salary_per_hour_fixed', 'salary_is_netto')
         }),
         ('Детали и расписание', {
-            'fields': ('work_duties', 'work_schedule', 'sex', 'category', 'description')
+            'fields': ('work_duties', 'requirements', 'work_schedule', 'sex', 'category', 'description')
         }),
         ('Просмотры и метаданные', {
             'fields': ('views', 'date_time', 'date_time_update')
