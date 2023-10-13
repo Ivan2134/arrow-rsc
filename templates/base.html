@@ -169,7 +169,7 @@
                         alert("Пожалуйста, введите номер телефона в верном формате и выберите страну.");
                         event.preventDefault();
                     }
-                    if (!iti.isValidNumber()) {
+                    if (iti.isValidNumber()) {
                         phoneInput.value = phoneNumber;
                     } 
                 });
