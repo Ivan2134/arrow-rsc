@@ -49,11 +49,16 @@ class VacancyListView(ListView):
         sexes = Sex.objects.all()
         if request.GET.get('clear', '0') != '1':
             selected_categories = list(map(int, request.GET.getlist('profession', [])))
+            selected_actuals = list(map(int, request.GET.getlist('actual', [])))
             selected_sexes = list(map(int, request.GET.getlist('sex', [])))
             selected_states = list(map(int, request.GET.getlist('location', [])))
         else:
-            selected_categories, selected_sexes, selected_states = ([], [], [])
-            
+            selected_categories, selected_sexes, selected_states, selected_actuals = ([], [], [], [])
+
+        if len(selected_actuals) > 0:
+            if selected_actuals[0] != 2:
+                vacancies = vacancies.filter(actual=True if selected_actuals[0] == 1 else False)
+        
         if len(selected_categories) > 0:
             vacancies = vacancies.filter(category__id__in=selected_categories)
             
@@ -62,6 +67,8 @@ class VacancyListView(ListView):
         
         if len(selected_states) > 0:
             vacancies = vacancies.filter(state__id__in=selected_states)
+            
+        
                 
             
         # send_mail('Тест', f'{vacancies.values_list("id", "category")}', 'invilsomail@gmail.com', ['invilsomail@gmail.com'])
@@ -75,6 +82,7 @@ class VacancyListView(ListView):
             'selected_categories': selected_categories,
             'selected_sexes': selected_sexes,
             'selected_states': selected_states,
+            'selected_actuals': selected_actuals,
             'selected_nav_name': 'vacancies'
         }
         return render(request, 'vacancy/list.html', context)

@@ -111,15 +111,7 @@
                         <a href="#" class="custom-title-link"><i class="fa-regular fa-filters" style="color: #0a58ca;"></i> Фильтр</a>
                     </h5>
                     <form method='get' action="{% url 'vacancy:list' %}#search_results_link" id="filterForm">
-                        {% comment %} <label for="profession"> <i class="fa-regular fa-user-helmet-safety" style="color: #0a58ca;"></i> <strong>Специальность:</strong></label>
-                        <div class="scroll-container" id="profession">
-                            {% for category in categories %}
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="check{{category.id}}prof" name="profession" value="{{category.id}}" {% if category.id in selected_categories %}checked{% endif %}>
-                                <label class="form-check-label">{{category.name}}</label>
-                            </div>
-                            {% endfor %}
-                        </div> {% endcomment %}
+                        
                         <label for="location"> <i class="fa-regular fa-location-dot " style="color: #0a58ca;"></i> <strong>Регион:</strong></label>
                         <div class="scroll-container" id="location">
                             {% for state in states %}
@@ -138,6 +130,21 @@
                                 <label class="form-check-label">{{sex.name}}</label>
                             </div>
                             {% endfor %}
+                        </div>
+                        <label for="actual"> <i class="far fa-calendar" style="color: #0a58ca;"></i> <strong>Актуальность:</strong></label>
+                        <div class="scroll-container" id="actual">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="check1actual" name="actual" value="1" {% if 1 in selected_actuals %}checked{% endif %}>
+                                <label class="form-check-label">Актуально</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="check0actual" name="actual" value="0" {% if 0 in selected_actuals %}checked{% endif %}>
+                                <label class="form-check-label">Не актуально</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="check2actual" name="actual" value="2" {% if 2 in selected_actuals %}checked{% endif %}{% if selected_actuals|length < 1 %}checked{% endif %}>
+                                <label class="form-check-label">Все</label>
+                            </div>
                         </div>
                         <div class="row">
                             <div class='col-md-6 col-sm-12 mt-2'>

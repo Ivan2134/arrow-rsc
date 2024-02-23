@@ -70,7 +70,7 @@ class VacancyAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ('Основная информация', {
-            'fields': ('name', 'title', 'city', 'state', 'index', 'active')
+            'fields': ('name', 'title', 'city', 'state', 'index', 'active', 'actual')
         }),
         ('Медиа', {
             'fields': ('card_photo', 'photos', 'video', 'embeded')

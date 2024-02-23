@@ -191,6 +191,7 @@ class Vacancy(models.Model):
     index = models.ForeignKey(Index, on_delete=models.CASCADE, verbose_name="Индекс (служебное)", null=True, blank=True)
     description = models.TextField(verbose_name="Описание", null=True, blank=True)
     active = models.BooleanField(verbose_name='Активно', default=True)
+    actual = models.BooleanField(verbose_name='Актуально', default=True)
     views = models.ManyToManyField(View, blank=True)
     
     def _get_salary_text(self, is_netto_text):
