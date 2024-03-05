@@ -57,7 +57,7 @@ class ViewAdmin(admin.ModelAdmin):
 
 @admin.register(Vacancy)
 class VacancyAdmin(admin.ModelAdmin):
-    list_display = ('name', 'city', 'index', 'active', 'date_time', 'date_time_update')
+    list_display = ('name', 'city', 'index', 'active', 'irrelevant', 'date_time', 'date_time_update')
     list_filter = ('city', 'state', 'category', 'sex')
     search_fields = ('name', 'city__name', 'index__name', 'category__name')
 
@@ -70,7 +70,7 @@ class VacancyAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ('Основная информация', {
-            'fields': ('name', 'title', 'city', 'state', 'index', 'active', 'actual')
+            'fields': ('name', 'title', 'city', 'state', 'index', 'active', 'irrelevant')
         }),
         ('Медиа', {
             'fields': ('card_photo', 'photos', 'video', 'embeded')

@@ -49,15 +49,15 @@ class VacancyListView(ListView):
         sexes = Sex.objects.all()
         if request.GET.get('clear', '0') != '1':
             selected_categories = list(map(int, request.GET.getlist('profession', [])))
-            selected_actuals = list(map(int, request.GET.getlist('actual', [])))
+            selected_irrelevants = list(map(int, request.GET.getlist('irrelevant', [])))
             selected_sexes = list(map(int, request.GET.getlist('sex', [])))
             selected_states = list(map(int, request.GET.getlist('location', [])))
         else:
-            selected_categories, selected_sexes, selected_states, selected_actuals = ([], [], [], [])
+            selected_categories, selected_sexes, selected_states, selected_irrelevants = ([], [], [], [])
 
-        if len(selected_actuals) > 0:
-            if selected_actuals[0] != 2:
-                vacancies = vacancies.filter(actual=True if selected_actuals[0] == 1 else False)
+        if len(selected_irrelevants) > 0:
+            if selected_irrelevants[0] != 2:
+                vacancies = vacancies.filter(irrelevant=False if selected_irrelevants[0] == 1 else True)
         
         if len(selected_categories) > 0:
             vacancies = vacancies.filter(category__id__in=selected_categories)
@@ -72,7 +72,7 @@ class VacancyListView(ListView):
                 
             
         # send_mail('Тест', f'{vacancies.values_list("id", "category")}', 'invilsomail@gmail.com', ['invilsomail@gmail.com'])
-        vacancies = vacancies.order_by('date_time')
+        vacancies = vacancies.order_by('date_time', 'irrelevant')
         context = {
             'vacancies': vacancies,
             'vacancies_len': vacancies.count(),
@@ -82,7 +82,7 @@ class VacancyListView(ListView):
             'selected_categories': selected_categories,
             'selected_sexes': selected_sexes,
             'selected_states': selected_states,
-            'selected_actuals': selected_actuals,
+            'selected_irrelevants': selected_irrelevants,
             'selected_nav_name': 'vacancies'
         }
         return render(request, 'vacancy/list.html', context)

@@ -131,18 +131,14 @@
                             </div>
                             {% endfor %}
                         </div>
-                        <label for="actual"> <i class="far fa-calendar" style="color: #0a58ca;"></i> <strong>Актуальность:</strong></label>
-                        <div class="scroll-container" id="actual">
+                        <label for="irrelevant"> <i class="far fa-calendar" style="color: #0a58ca;"></i> <strong>Актуальность:</strong></label>
+                        <div class="scroll-container" id="irrelevant">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" id="check1actual" name="actual" value="1" {% if 1 in selected_actuals %}checked{% endif %}>
+                                <input class="form-check-input" type="radio" id="check1irrelevant" name="irrelevant" value="1" {% if 1 in selected_irrelevants %}checked{% endif %}>
                                 <label class="form-check-label">Актуально</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" id="check0actual" name="actual" value="0" {% if 0 in selected_actuals %}checked{% endif %}>
-                                <label class="form-check-label">Не актуально</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" id="check2actual" name="actual" value="2" {% if 2 in selected_actuals %}checked{% endif %}{% if selected_actuals|length < 1 %}checked{% endif %}>
+                                <input class="form-check-input" type="radio" id="check2irrelevant" name="irrelevant" value="2" {% if 2 in selected_irrelevants %}checked{% endif %}{% if selected_irrelevants|length < 1 %}checked{% endif %}>
                                 <label class="form-check-label">Все</label>
                             </div>
                         </div>
@@ -165,12 +161,15 @@
                     <div class="row w-100">
                       {% for vacancy in vacancies %}
                       <div class="col-md-5 col-12 col-sm-8 col-lg-4 mt-2">
-                        <div class="card h-100">
+                        <div class="card h-100" style="opacity: {% if vacancy.irrelevant %}0.7{% else %}1.0{% endif %};">
                             <img src="{{vacancy.card_photo.file_thumbnail_list.url}}" class="card-img-top" alt="...">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">
-                                    <a href="{% url 'vacancy:item' pk=vacancy.pk %}" class="custom-title-link">{{vacancy.name}}</a>
-                                </h5>
+                                    <a href="{% url 'vacancy:item' pk=vacancy.pk %}" class="custom-title-link">{{ vacancy.name }}</a>
+                                    {% if vacancy.irrelevant %}
+                                        <span class="float-end" style='color: red;'>Не актуально</span>
+                                    {% endif %}
+                                </h5>                                
                                 <div class="d-flex flex-column justify-content-between flex-grow-1">
                                     <div>
                                         <div class="card-text"><i class="bi bi-geo-alt custom-salary"></i> {{vacancy.state}}, {{vacancy.city}}</div>
