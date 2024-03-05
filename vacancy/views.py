@@ -72,7 +72,8 @@ class VacancyListView(ListView):
                 
             
         # send_mail('Тест', f'{vacancies.values_list("id", "category")}', 'invilsomail@gmail.com', ['invilsomail@gmail.com'])
-        vacancies = vacancies.order_by('date_time', 'irrelevant')
+        vacancies = vacancies.order_by('date_time')
+        vacancies = vacancies.order_by('irrelevant')
         context = {
             'vacancies': vacancies,
             'vacancies_len': vacancies.count(),
