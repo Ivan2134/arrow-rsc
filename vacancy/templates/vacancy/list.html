@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 {% block title %}{% translate "Arrow RSC - Вакансии" %}{% endblock title %}
 {% block static %}
 <link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
@@ -79,7 +80,7 @@
                             <h5 style='font-size: 1.1rem;'>{% translate "Оставьте ваши контакты – мы подберем для вас идеальную работу."%}</h5>
                             <form class="p-1" action="{% url 'vacancy:apply' %}" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
-                                <input class="form-control phone-input my-2 form-sizes-media" type="text" placeholder={% translate "Ваше Имя"%} aria-label="default input example" id='name', name="name">
+                                <input class="form-control phone-input my-2 form-sizes-media" type="text" placeholder="{% translate 'Ваше Имя'%}" aria-label="default input example" id='name', name="name">
                                 <input class="form-control phone-number-input form-sizes-media" type="text" aria-label="default input example" id='phone', name="phone">
                                 <div class="row">
                                     <div class='col-md-8 col-sm-12'>

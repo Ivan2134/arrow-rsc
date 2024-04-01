@@ -171,7 +171,10 @@ class Salary(models.Model):
         constraints = [
             models.UniqueConstraint(fields=['amount', 'currency'], name='unique_amount_currency')
         ]
-        
+    
+    def __str__(self) -> str:
+        return f'{self.amount} {self.currency}'
+    
     @property
     def symbol(self) -> str:
         return CURRENCY_SYMBOLS.get(self.currency, self.currency)
@@ -183,7 +186,9 @@ class HourlyPaymentOption(models.Model):
 
     def __str__(self):
         hourly_rate: Salary = self.hourly_rates.all().last()
-        return f"{self.payment_type}: {hourly_rate.amount} {hourly_rate.symbol}/{_('час')}"
+        if hourly_rate:
+            return f"{self.payment_type}: {hourly_rate.amount} {hourly_rate.symbol}/{_('час')}"
+        return f"{self.payment_type}"
     
     def all_rates_texts(self):
         hourly_rates: models.QuerySet[Salary] = self.hourly_rates.all()
@@ -212,10 +217,10 @@ class Vacancy(models.Model):
     video = models.ForeignKey(Video, on_delete=models.CASCADE, verbose_name=_('Видеозапись вакансии'), null=True, blank=True)
     info_label = models.ForeignKey(InfoLabel, on_delete=models.SET_NULL, verbose_name=_("Описание стандарт"), null=True, blank=True)
     salary_per_hour = models.ManyToManyField(HourlyPaymentOption, verbose_name=_("Варианты почасовой оплаты"))
-    salary_per_mounth_min = models.ManyToManyField(Salary, verbose_name=_('Ставка месячная минимум'), blank=True)
-    salary_per_mounth_max = models.ManyToManyField(Salary, verbose_name=_('Ставка месячная максимум'), blank=True)
-    salary_per_mounth_fixed = models.ManyToManyField(Salary, verbose_name=_('Ставка месячная фиксированая (если нет минимума или максимума)'), blank=True)
-    salary_per_hour_fixed = models.ManyToManyField(Salary, verbose_name=_('Ставка почасовая (если нет месячной)'), blank=True)
+    salary_per_hour_fixed = models.ManyToManyField(Salary, verbose_name=_('Ставка почасовая (если нет месячной)'), blank=True, related_name='salary_per_hour_fixed')
+    salary_per_mounth_fixed = models.ManyToManyField(Salary, verbose_name=_('Ставка месячная фиксированая (если нет минимума или максимума)'), blank=True, related_name='salary_per_mounth_fixed')
+    salary_per_mounth_max = models.ManyToManyField(Salary, verbose_name=_('Ставка месячная максимум'), blank=True, related_name='salary_per_mounth_max')
+    salary_per_mounth_min = models.ManyToManyField(Salary, verbose_name=_('Ставка месячная минимум'), blank=True, related_name='salary_per_mounth_min')
     default_currency = models.CharField(max_length=5, verbose_name=_('Валюта по умолчанию'), choices=CURRENCY_CHOICES, default="PLN")
     show_all_salary = models.BooleanField(verbose_name=_('Показывать все валюты в вакансии'), default=False)
     salary_is_netto = models.BooleanField(verbose_name=_('Зарплата netto?'), default=True)
@@ -255,7 +260,7 @@ class Vacancy(models.Model):
             return f"{_('до')} {self._get_salary_text_with_currency(salary)}"
         elif self.salary_per_hour_fixed.count() > 0:
             salary = self._get_default_salary(self.salary_per_hour_fixed)
-            return f"{self._get_salary_text_with_currency(salary)}/{_('час')} {is_netto_text}"
+            return f"{self._get_salary_text_with_currency(salary)}/{_('h')} {is_netto_text}"
         else:
             return ""
     
@@ -269,7 +274,13 @@ class Vacancy(models.Model):
             is_netto_text = 'netto'
         return self._get_salary_text(is_netto_text)
     
-    def get_salary_text_all_currency(self, is_netto_text):
+    def get_salary_text_all_currency(self):
+        is_netto_text = 'brutto'
+        if self.salary_is_netto:
+            is_netto_text = 'netto'
+        return self._get_salary_text_all_currency(is_netto_text)
+    
+    def _get_salary_text_all_currency(self, is_netto_text):
         if self.salary_per_mounth_fixed.count() > 0:
             salaries = self.salary_per_mounth_fixed.all()
             return [f"{self._get_salary_text_with_currency(salary)}" for salary in salaries]
@@ -285,7 +296,7 @@ class Vacancy(models.Model):
             return [f"{_('до')} {self._get_salary_text_with_currency(salary)}" for salary in salaries]
         elif self.salary_per_hour_fixed.count() > 0:
             salaries = self.salary_per_hour_fixed.all()
-            return [f"{self._get_salary_text_with_currency(salary)}/{_('час')} {is_netto_text}" for salary in salaries]
+            return [f"{self._get_salary_text_with_currency(salary)}/{_('h')} {is_netto_text}" for salary in salaries]
         else:
             return ""
 

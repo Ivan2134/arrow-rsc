@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import State, City, Sex, InfoLabel, Category, Index, Photo, Video, WorkDuty, \
+from .models import Salary, State, City, Sex, InfoLabel, Category, Index, Photo, Video, WorkDuty, \
     HourlyPaymentOption, View, Vacancy, Requirement
     
 from tinymce.widgets import TinyMCE
@@ -46,10 +46,26 @@ class WorkDutyAdmin(admin.ModelAdmin):
 @admin.register(Requirement)
 class RequirementAdmin(admin.ModelAdmin):
     list_display = ('description',)
+    
+@admin.register(Salary)
+class SalaryAdmin(admin.ModelAdmin):
+    list_display = ('id',)
 
 @admin.register(HourlyPaymentOption)
 class HourlyPaymentOptionAdmin(admin.ModelAdmin):
-    list_display = ('payment_type', 'hourly_rate')
+    list_display = ('id', 'payment_type', 'last_hourly_rate_amount')
+    ordering = ('hourly_rates__amount',)
+    
+
+    def last_hourly_rate_amount(self, obj):
+        # Получаем последний hourly_rate для данного HourlyPaymentOption
+        last_hourly_rate = obj.hourly_rates.last()
+        if last_hourly_rate:
+            return last_hourly_rate.amount
+        return None
+
+    # Указываем корректное имя для колонки
+    last_hourly_rate_amount.short_description = 'Last Hourly Rate Amount'
 
 @admin.register(View)
 class ViewAdmin(admin.ModelAdmin):
@@ -61,7 +77,7 @@ class VacancyAdmin(admin.ModelAdmin):
     list_filter = ('city', 'state', 'category', 'sex')
     search_fields = ('name', 'city__name', 'index__name', 'category__name')
 
-    filter_horizontal = ('photos', 'salary_per_hour', 'work_duties', 'requirements', 'sex', 'views')
+    filter_horizontal = ('photos', 'salary_per_hour', 'work_duties', 'requirements', 'sex', 'views', 'salary_per_mounth_min', 'salary_per_mounth_fixed', 'salary_per_hour_fixed', 'salary_per_mounth_max')
     readonly_fields = ('embeded', 'views', 'date_time', 'date_time_update')
     
     formfield_overrides = {
@@ -76,7 +92,7 @@ class VacancyAdmin(admin.ModelAdmin):
             'fields': ('card_photo', 'photos', 'video', 'embeded')
         }),
         (_('Описание и оплата'), {
-            'fields': ('info_label', 'salary_per_hour', 'salary_per_mounth_min', 'salary_per_mounth_max', 'salary_per_mounth_fixed', 'salary_per_hour_fixed', 'salary_is_netto')
+            'fields': ('info_label', 'salary_per_hour', 'salary_per_mounth_min', 'salary_per_mounth_max', 'salary_per_mounth_fixed', 'salary_per_hour_fixed', 'salary_is_netto', 'show_all_salary', 'default_currency')
         }),
         (_('Детали и расписание'), {
             'fields': ('work_duties', 'requirements', 'work_schedule', 'sex', 'category', 'description')

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-31 18:34+0000\n"
+"POT-Creation-Date: 2024-04-01 15:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,23 +20,24 @@ msgstr ""
 "11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
 "100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
 "(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
-#: arrow_rsc/settings.py:140
+
+#: arrow_rsc/settings.py:141
 msgid "Russian"
 msgstr "Російська"
 
-#: arrow_rsc/settings.py:141
+#: arrow_rsc/settings.py:142
 msgid "English"
 msgstr "Англійська"
 
-#: arrow_rsc/settings.py:142
+#: arrow_rsc/settings.py:143
 msgid "Ukrainian"
 msgstr "Українська"
 
-#: arrow_rsc/settings.py:143
+#: arrow_rsc/settings.py:144
 msgid "Polish"
 msgstr "Польська"
 
-#: arrow_rsc/settings.py:144
+#: arrow_rsc/settings.py:145
 msgid "Azerbaijani"
 msgstr "Азербайджанська"
 
@@ -105,7 +106,7 @@ msgstr "Текст"
 msgid "О нас (одно поле)"
 msgstr "Про нас (одне поле)"
 
-#: info_pages/models.py:115 vacancy/models.py:230
+#: info_pages/models.py:115 vacancy/models.py:235
 msgid "Описание"
 msgstr "Опис"
 
@@ -205,15 +206,15 @@ msgid ""
 "злотых за каждого нанятого сотрудника, пожалуйста, заполните форму с "
 "контактами, и мы свяжемся с Вами."
 msgstr ""
-"Якщо Ви хочете  стати нашим партнером-рекрутером та заробляти від 500 до 800"
-"злотих за кожного співробітника, будь ласка, заповніть форму з контактами, "
-"і ми з Вами зв'яжемося."
+"Якщо Ви хочете  стати нашим партнером-рекрутером та заробляти від 500 до "
+"800злотих за кожного співробітника, будь ласка, заповніть форму з "
+"контактами, і ми з Вами зв'яжемося."
 
 #: templates/apply_modal.html:23
 msgid "Имя:"
 msgstr "Ім`я:"
 
-#: templates/apply_modal.html:24 vacancy/templates/vacancy/list.html:82
+#: templates/apply_modal.html:24 vacancy/templates/vacancy/list.html:83
 msgid "Ваше Имя"
 msgstr "Ваше Ім`я:"
 
@@ -245,7 +246,7 @@ msgstr "Ваш запит:"
 msgid "Хочу стать партнером"
 msgstr "Хочу стати партнером"
 
-#: templates/apply_modal.html:44 vacancy/templates/vacancy/list.html:88
+#: templates/apply_modal.html:44 vacancy/templates/vacancy/list.html:89
 msgid ""
 "Я даю согласие на обработку моих персональных данных компанией Arrow-rsc Sp. "
 "z.o.o. Предоставление данных является добровольным, но необходимым для "
@@ -253,25 +254,26 @@ msgid ""
 "целях обработки данных нами персональные данные и права субъектов данных "
 "можно найти в нашей политике конфиденциальности."
 msgstr ""
-"Я даю згоду на обробку моїх персональних даних компанією Arrow-rsc Sp. z.o.o. "
-"Надавання данних є добровільним, але необхідним для запиту та надання послуги. "
-"Детальна інформація про об'єм і цілі обробки нами персональних даних та "
-"права суб'єктів даних можна знайти в нашій політиці конфіденційності."
+"Я даю згоду на обробку моїх персональних даних компанією Arrow-rsc Sp. z.o."
+"o. Надавання данних є добровільним, але необхідним для запиту та надання "
+"послуги. Детальна інформація про об'єм і цілі обробки нами персональних "
+"даних та права суб'єктів даних можна знайти в нашій політиці "
+"конфіденційності."
 
 #: templates/apply_modal.html:51
 msgid "Прикрепить резюме"
 msgstr "Прикріпити резюме"
 
-#: templates/apply_modal.html:57 vacancy/templates/vacancy/list.html:92
+#: templates/apply_modal.html:57 vacancy/templates/vacancy/list.html:93
 msgid "Оставить заявку"
 msgstr "Залишити заявку"
 
 #: templates/base.html:8 vacancy/templates/vacancy/item.html:4
-#: vacancy/templates/vacancy/list.html:3
+#: vacancy/templates/vacancy/list.html:4
 msgid "Arrow RSC - Вакансии"
 msgstr "Arrow RSC - Вакансії"
 
-#: templates/base.html:63 vacancy/models.py:303
+#: templates/base.html:63 vacancy/models.py:314
 msgid "Вакансии"
 msgstr "Вакансії"
 
@@ -309,7 +311,8 @@ msgstr "Будь ласка, дайте згоду на обробку дани�
 
 #: templates/base.html:168
 msgid "Пожалуйста, введите номер телефона в верном формате и выберите страну."
-msgstr "Будь ласка, введіть номер телефону у вірному форматі та виберіть країну."
+msgstr ""
+"Будь ласка, введіть номер телефону у вірному форматі та виберіть країну."
 
 #: templates/footer.html:6
 msgid "Другие сервисы"
@@ -323,23 +326,23 @@ msgstr "Ресурси"
 msgid "Мы в соц. сетях"
 msgstr "Ми в соц. мережах"
 
-#: vacancy/admin.py:72
+#: vacancy/admin.py:88
 msgid "Основная информация"
 msgstr "Основна інформація"
 
-#: vacancy/admin.py:75
+#: vacancy/admin.py:91
 msgid "Медиа"
 msgstr "Медіа"
 
-#: vacancy/admin.py:78
+#: vacancy/admin.py:94
 msgid "Описание и оплата"
 msgstr "Опис та оплата"
 
-#: vacancy/admin.py:81
+#: vacancy/admin.py:97
 msgid "Детали и расписание"
 msgstr "Деталі та розклад"
 
-#: vacancy/admin.py:84
+#: vacancy/admin.py:100
 msgid "Просмотры и метаданные"
 msgstr "Перегляди та метадані"
 
@@ -347,7 +350,7 @@ msgstr "Перегляди та метадані"
 msgid "Название"
 msgstr "Назва"
 
-#: vacancy/models.py:52 vacancy/models.py:209
+#: vacancy/models.py:52 vacancy/models.py:214
 msgid "Регион"
 msgstr "Регіон"
 
@@ -368,7 +371,7 @@ msgid "Города"
 msgstr "Міста"
 
 #: vacancy/models.py:67 vacancy/models.py:73 vacancy/models.py:74
-#: vacancy/models.py:227
+#: vacancy/models.py:232
 msgid "Пол"
 msgstr "Стать"
 
@@ -388,7 +391,7 @@ msgstr "Опис Стандарт"
 msgid "Описания Стандарт"
 msgstr "Описи Стандарт"
 
-#: vacancy/models.py:95 vacancy/models.py:228
+#: vacancy/models.py:95 vacancy/models.py:233
 msgid "Категория"
 msgstr "Категорія"
 
@@ -432,7 +435,7 @@ msgstr "Опис обов'язку"
 msgid "Обязанность по работе"
 msgstr "Обов'язок по роботі"
 
-#: vacancy/models.py:152 vacancy/models.py:222
+#: vacancy/models.py:152 vacancy/models.py:227
 msgid "Обязанности по работе"
 msgstr "Обов'язки по роботі"
 
@@ -456,111 +459,111 @@ msgstr "Сума"
 msgid "Валюта"
 msgstr "Валюта"
 
-#: vacancy/models.py:181
+#: vacancy/models.py:184
 msgid "Тип оплаты (для студентов, ночные, испытательный и тд.)"
 msgstr "Тип оплати (для студентів, нічні, випробувальний та інші.)"
 
-#: vacancy/models.py:182
+#: vacancy/models.py:185
 msgid "Почасовая ставка"
 msgstr "Погодинна ставка"
 
-#: vacancy/models.py:193
+#: vacancy/models.py:198
 msgid "Вариант почасовой оплаты"
 msgstr "Варіант погодинної ставки"
 
-#: vacancy/models.py:194 vacancy/models.py:214
+#: vacancy/models.py:199 vacancy/models.py:219
 msgid "Варианты почасовой оплаты"
 msgstr "Варіанти погодинної ставки"
 
-#: vacancy/models.py:206
+#: vacancy/models.py:211
 msgid "Название вакансии"
 msgstr "Назва вакансії"
 
-#: vacancy/models.py:207
+#: vacancy/models.py:212
 msgid "Заголовок вакансии"
 msgstr "Заголовок вакансії"
 
-#: vacancy/models.py:208
+#: vacancy/models.py:213
 msgid "Место работы"
 msgstr "Місце роботи"
 
-#: vacancy/models.py:210
+#: vacancy/models.py:215
 msgid "Картинка карточки вакансии и обложки"
 msgstr "Картинка карточки вакансії і обкладинки"
 
-#: vacancy/models.py:211
+#: vacancy/models.py:216
 msgid "Фотографии вакансии"
 msgstr "Фотографії вакансії"
 
-#: vacancy/models.py:212
+#: vacancy/models.py:217
 msgid "Видеозапись вакансии"
 msgstr "Відеозапис вакансії"
 
-#: vacancy/models.py:213
+#: vacancy/models.py:218
 msgid "Описание стандарт"
 msgstr "Опис стандарт"
 
-#: vacancy/models.py:215
-msgid "Ставка месячная минимум"
-msgstr "Ставка місячна мінімум"
-
-#: vacancy/models.py:216
-msgid "Ставка месячная максимум"
-msgstr "Ставка місячна максимум"
-
-#: vacancy/models.py:217
-msgid "Ставка месячная фиксированая (если нет минимума или максимума)"
-msgstr "Ставка місячна фіксована (якщо немає мінімуму або максимуму)"
-
-#: vacancy/models.py:218
+#: vacancy/models.py:220
 msgid "Ставка почасовая (если нет месячной)"
 msgstr "Ставка погодинн (якщо немає місячної)"
 
-#: vacancy/models.py:219
+#: vacancy/models.py:221
+msgid "Ставка месячная фиксированая (если нет минимума или максимума)"
+msgstr "Ставка місячна фіксована (якщо немає мінімуму або максимуму)"
+
+#: vacancy/models.py:222
+msgid "Ставка месячная максимум"
+msgstr "Ставка місячна максимум"
+
+#: vacancy/models.py:223
+msgid "Ставка месячная минимум"
+msgstr "Ставка місячна мінімум"
+
+#: vacancy/models.py:224
 msgid "Валюта по умолчанию"
 msgstr "Валюта за замовчуванням"
 
-#: vacancy/models.py:220
+#: vacancy/models.py:225
 msgid "Показывать все валюты в вакансии"
 msgstr "Показувати всі валюти в вакансії"
 
-#: vacancy/models.py:221
+#: vacancy/models.py:226
 msgid "Зарплата netto?"
 msgstr "Зарплата netto?"
 
-#: vacancy/models.py:223
+#: vacancy/models.py:228
 msgid "Требования к кандидату"
 msgstr "Вимоги до кандидата"
 
-#: vacancy/models.py:224 vacancy/templates/vacancy/item.html:264
+#: vacancy/models.py:229 vacancy/templates/vacancy/item.html:264
 msgid "График работы"
 msgstr "Графік роботи"
 
-#: vacancy/models.py:225
+#: vacancy/models.py:230
 msgid "Дата создания"
 msgstr "Дата створення"
 
-#: vacancy/models.py:226
+#: vacancy/models.py:231
 msgid "Дата изменения"
 msgstr "Дата зміни"
 
-#: vacancy/models.py:229
+#: vacancy/models.py:234
 msgid "Индекс (служебное)"
 msgstr "Індекс (службове)"
 
-#: vacancy/models.py:231
+#: vacancy/models.py:236
 msgid "Активно"
 msgstr "Активно"
 
-#: vacancy/models.py:232 vacancy/templates/vacancy/list.html:170
+#: vacancy/models.py:237 vacancy/templates/vacancy/list.html:171
 msgid "Не актуально"
 msgstr "Не актуально"
 
-#: vacancy/models.py:298
+#: vacancy/models.py:309
 msgid "Встройка в YouTube"
 msgstr "Ембедінг в YouTube"
 
-#: vacancy/models.py:302
+#: vacancy/models.py:313
 msgid "Вакансия"
 msgstr "Вакансія"
 
@@ -596,54 +599,54 @@ msgstr "Подати заявку"
 msgid "Откликнуться на вакансию"
 msgstr "Відгукнутися на вакансію"
 
-#: vacancy/templates/vacancy/list.html:74
+#: vacancy/templates/vacancy/list.html:75
 msgid "Работа в Польше"
 msgstr "Робота в Польщі"
 
-#: vacancy/templates/vacancy/list.html:78
+#: vacancy/templates/vacancy/list.html:79
 msgid "Не нашли подходящую вакансию?"
 msgstr "Не знайшли підходящу вакансію?"
 
-#: vacancy/templates/vacancy/list.html:79
+#: vacancy/templates/vacancy/list.html:80
 msgid "Оставьте ваши контакты – мы подберем для вас идеальную работу."
 msgstr "Залишіть ваші контакти - ми підберемо для вас ідеальну роботу."
 
-#: vacancy/templates/vacancy/list.html:111
+#: vacancy/templates/vacancy/list.html:112
 msgid "Фильтр"
 msgstr "Фільтр"
 
-#: vacancy/templates/vacancy/list.html:115
+#: vacancy/templates/vacancy/list.html:116
 msgid "Регион:"
 msgstr "Регіон:"
 
-#: vacancy/templates/vacancy/list.html:125
+#: vacancy/templates/vacancy/list.html:126
 msgid "Пол:"
 msgstr "Стать:"
 
-#: vacancy/templates/vacancy/list.html:134
+#: vacancy/templates/vacancy/list.html:135
 msgid "Актуальность:"
 msgstr "Актуальність:"
 
-#: vacancy/templates/vacancy/list.html:138
+#: vacancy/templates/vacancy/list.html:139
 msgid "Актуально"
 msgstr "Актуальні"
 
-#: vacancy/templates/vacancy/list.html:142
+#: vacancy/templates/vacancy/list.html:143
 msgid "Все"
 msgstr "Всі"
 
-#: vacancy/templates/vacancy/list.html:147
+#: vacancy/templates/vacancy/list.html:148
 msgid "Подтвердить"
 msgstr "Підтвердити"
 
-#: vacancy/templates/vacancy/list.html:150
+#: vacancy/templates/vacancy/list.html:151
 msgid "Очистить"
 msgstr "Очистити"
 
-#: vacancy/templates/vacancy/list.html:159
+#: vacancy/templates/vacancy/list.html:160
 msgid "Результаты поиска"
 msgstr "Результати пошуку"
 
-#: vacancy/templates/vacancy/list.html:179
+#: vacancy/templates/vacancy/list.html:180
 msgid "Подробнее"
 msgstr "Детальніше"
