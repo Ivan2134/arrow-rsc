@@ -12,8 +12,8 @@ from modeltranslation.admin import TranslationAdmin
 class StateAdmin(TranslationAdmin):
     class Media:
         js = (
-            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation_jquery/jquery.min.js',
+            'modeltranslation_jquery/jquery-ui.min.js',
             'modeltranslation/js/tabbed_translation_fields.js',
         )
         css = {
@@ -25,8 +25,8 @@ class StateAdmin(TranslationAdmin):
 class CityAdmin(TranslationAdmin):
     class Media:
         js = (
-            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation_jquery/jquery.min.js',
+            'modeltranslation_jquery/jquery-ui.min.js',
             'modeltranslation/js/tabbed_translation_fields.js',
         )
         css = {
@@ -38,8 +38,8 @@ class CityAdmin(TranslationAdmin):
 class SexAdmin(TranslationAdmin):
     class Media:
         js = (
-            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation_jquery/jquery.min.js',
+            'modeltranslation_jquery/jquery-ui.min.js',
             'modeltranslation/js/tabbed_translation_fields.js',
         )
         css = {
@@ -51,8 +51,8 @@ class SexAdmin(TranslationAdmin):
 class InfoLabelAdmin(TranslationAdmin):
     class Media:
         js = (
-            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation_jquery/jquery.min.js',
+            'modeltranslation_jquery/jquery-ui.min.js',
             'modeltranslation/js/tabbed_translation_fields.js',
         )
         css = {
@@ -64,8 +64,8 @@ class InfoLabelAdmin(TranslationAdmin):
 class CategoryAdmin(TranslationAdmin):
     class Media:
         js = (
-            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation_jquery/jquery.min.js',
+            'modeltranslation_jquery/jquery-ui.min.js',
             'modeltranslation/js/tabbed_translation_fields.js',
         )
         css = {
@@ -89,8 +89,8 @@ class VideoAdmin(admin.ModelAdmin):
 class WorkDutyAdmin(TranslationAdmin):
     class Media:
         js = (
-            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation_jquery/jquery.min.js',
+            'modeltranslation_jquery/jquery-ui.min.js',
             'modeltranslation/js/tabbed_translation_fields.js',
         )
         css = {
@@ -102,8 +102,8 @@ class WorkDutyAdmin(TranslationAdmin):
 class RequirementAdmin(TranslationAdmin):
     class Media:
         js = (
-            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation_jquery/jquery.min.js',
+            'modeltranslation_jquery/jquery-ui.min.js',
             'modeltranslation/js/tabbed_translation_fields.js',
         )
         css = {
@@ -122,8 +122,8 @@ class HourlyPaymentOptionAdmin(TranslationAdmin):
     
     class Media:
         js = (
-            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation_jquery/jquery.min.js',
+            'modeltranslation_jquery/jquery-ui.min.js',
             'modeltranslation/js/tabbed_translation_fields.js',
         )
         css = {
@@ -159,8 +159,8 @@ class VacancyAdmin(TranslationAdmin):
     
     class Media:
         js = (
-            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation_jquery/jquery.min.js',
+            'modeltranslation_jquery/jquery-ui.min.js',
             'modeltranslation/js/tabbed_translation_fields.js',
         )
         css = {
