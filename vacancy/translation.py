@@ -1,5 +1,5 @@
 from modeltranslation.translator import TranslationOptions, register
-from .models import Vacancy, HourlyPaymentOption, Requirement, WorkDuty, InfoLabel, Sex, City, State
+from .models import Category, Vacancy, HourlyPaymentOption, Requirement, WorkDuty, InfoLabel, Sex, City, State
 
 @register(Vacancy)
 class VacancyTranslationOptions(TranslationOptions):
@@ -30,5 +30,9 @@ class CityTranslationOptions(TranslationOptions):
     fields = ('name',)
 
 @register(State)
+class StateTranslationOptions(TranslationOptions):
+    fields = ('name',)
+    
+@register(Category)
 class StateTranslationOptions(TranslationOptions):
     fields = ('name',)

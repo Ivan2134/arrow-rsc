@@ -146,6 +146,7 @@ LANGUAGES = (
     ('az', gettext('Azerbaijani')),
 )
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
+MODELTRANSLATION_AUTO_POPULATE = True
 # Timezone
 TIME_ZONE = 'UTC'
 USE_TZ = True

@@ -5,70 +5,71 @@ from .models import Salary, State, City, Sex, InfoLabel, Category, Index, Photo,
 from tinymce.widgets import TinyMCE
 from django.db import models
 from django.utils.translation import gettext as _
+from modeltranslation.admin import TranslationAdmin
 
 # Define Admin classes for your models
 @admin.register(State)
-class StateAdmin(admin.ModelAdmin):
+class StateAdmin(TranslationAdmin):
     class Media:
         js = (
-            '/static/modeltranslation/js/force_jquery.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js',
-            '/static/modeltranslation/js/tabbed_translation_fields.js',
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
         )
         css = {
-            'screen': ('/static/modeltranslation/css/tabbed_translation_fields.css',),
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
         }
     list_display = ('name',)
 
 @admin.register(City)
-class CityAdmin(admin.ModelAdmin):
+class CityAdmin(TranslationAdmin):
     class Media:
         js = (
-            '/static/modeltranslation/js/force_jquery.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js',
-            '/static/modeltranslation/js/tabbed_translation_fields.js',
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
         )
         css = {
-            'screen': ('/static/modeltranslation/css/tabbed_translation_fields.css',),
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
         }
     list_display = ('name',)
 
 @admin.register(Sex)
-class SexAdmin(admin.ModelAdmin):
+class SexAdmin(TranslationAdmin):
     class Media:
         js = (
-            '/static/modeltranslation/js/force_jquery.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js',
-            '/static/modeltranslation/js/tabbed_translation_fields.js',
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
         )
         css = {
-            'screen': ('/static/modeltranslation/css/tabbed_translation_fields.css',),
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
         }
     list_display = ('name',)
 
 @admin.register(InfoLabel)
-class InfoLabelAdmin(admin.ModelAdmin):
+class InfoLabelAdmin(TranslationAdmin):
     class Media:
         js = (
-            '/static/modeltranslation/js/force_jquery.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js',
-            '/static/modeltranslation/js/tabbed_translation_fields.js',
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
         )
         css = {
-            'screen': ('/static/modeltranslation/css/tabbed_translation_fields.css',),
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
         }
     list_display = ('house', 'benefits')
 
 @admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
+class CategoryAdmin(TranslationAdmin):
     class Media:
         js = (
-            '/static/modeltranslation/js/force_jquery.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js',
-            '/static/modeltranslation/js/tabbed_translation_fields.js',
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
         )
         css = {
-            'screen': ('/static/modeltranslation/css/tabbed_translation_fields.css',),
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
         }
     list_display = ('name',)
 
@@ -85,28 +86,28 @@ class VideoAdmin(admin.ModelAdmin):
     list_display = ('file', 'url', 'embeded')
 
 @admin.register(WorkDuty)
-class WorkDutyAdmin(admin.ModelAdmin):
+class WorkDutyAdmin(TranslationAdmin):
     class Media:
         js = (
-            '/static/modeltranslation/js/force_jquery.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js',
-            '/static/modeltranslation/js/tabbed_translation_fields.js',
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
         )
         css = {
-            'screen': ('/static/modeltranslation/css/tabbed_translation_fields.css',),
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
         }
     list_display = ('description',)
     
 @admin.register(Requirement)
-class RequirementAdmin(admin.ModelAdmin):
+class RequirementAdmin(TranslationAdmin):
     class Media:
         js = (
-            '/static/modeltranslation/js/force_jquery.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js',
-            '/static/modeltranslation/js/tabbed_translation_fields.js',
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
         )
         css = {
-            'screen': ('/static/modeltranslation/css/tabbed_translation_fields.css',),
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
         }
     list_display = ('description',)
     
@@ -115,18 +116,18 @@ class SalaryAdmin(admin.ModelAdmin):
     list_display = ('id',)
 
 @admin.register(HourlyPaymentOption)
-class HourlyPaymentOptionAdmin(admin.ModelAdmin):
+class HourlyPaymentOptionAdmin(TranslationAdmin):
     list_display = ('id', 'payment_type', 'last_hourly_rate_amount')
     ordering = ('hourly_rates__amount',)
     
     class Media:
         js = (
-            '/static/modeltranslation/js/force_jquery.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js',
-            '/static/modeltranslation/js/tabbed_translation_fields.js',
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
         )
         css = {
-            'screen': ('/static/modeltranslation/css/tabbed_translation_fields.css',),
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
         }
         
     def last_hourly_rate_amount(self, obj):
@@ -144,7 +145,7 @@ class ViewAdmin(admin.ModelAdmin):
     list_display = ('ip', 'date_time', 'country', 'region_name', 'city', 'isp', 'mobile')
 
 @admin.register(Vacancy)
-class VacancyAdmin(admin.ModelAdmin):
+class VacancyAdmin(TranslationAdmin):
     list_display = ('name', 'city', 'index', 'active', 'irrelevant', 'date_time', 'date_time_update')
     list_filter = ('city', 'state', 'category', 'sex')
     search_fields = ('name', 'city__name', 'index__name', 'category__name')
@@ -158,12 +159,12 @@ class VacancyAdmin(admin.ModelAdmin):
     
     class Media:
         js = (
-            '/static/modeltranslation/js/force_jquery.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js',
-            '/static/modeltranslation/js/tabbed_translation_fields.js',
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
         )
         css = {
-            'screen': ('/static/modeltranslation/css/tabbed_translation_fields.css',),
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
         }
 
     fieldsets = (
