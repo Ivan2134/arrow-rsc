@@ -132,12 +132,22 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 LANGUAGE_CODE = 'ru'
-
-TIME_ZONE = 'UTC'
-
 USE_I18N = True
+USE_L10N = True
 
+gettext = lambda s: s
+LANGUAGES = (
+	('ru', gettext('Russian')),
+    ('en', gettext('English')),
+    ('uk', gettext('Ukrainian')),
+    ('pl', gettext('Polish')),
+    ('az', gettext('Azerbaijani')),
+)
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
+# Timezone
+TIME_ZONE = 'UTC'
 USE_TZ = True
+LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale/'), )
 
 
 # Static files (CSS, JavaScript, Images)

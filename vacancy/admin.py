@@ -4,7 +4,7 @@ from .models import State, City, Sex, InfoLabel, Category, Index, Photo, Video, 
     
 from tinymce.widgets import TinyMCE
 from django.db import models
-
+from django.utils.translation import gettext as _
 
 # Define Admin classes for your models
 @admin.register(State)
@@ -69,19 +69,19 @@ class VacancyAdmin(admin.ModelAdmin):
     }
 
     fieldsets = (
-        ('Основная информация', {
+        (_('Основная информация'), {
             'fields': ('name', 'title', 'city', 'state', 'index', 'active', 'irrelevant')
         }),
-        ('Медиа', {
+        (_('Медиа'), {
             'fields': ('card_photo', 'photos', 'video', 'embeded')
         }),
-        ('Описание и оплата', {
+        (_('Описание и оплата'), {
             'fields': ('info_label', 'salary_per_hour', 'salary_per_mounth_min', 'salary_per_mounth_max', 'salary_per_mounth_fixed', 'salary_per_hour_fixed', 'salary_is_netto')
         }),
-        ('Детали и расписание', {
+        (_('Детали и расписание'), {
             'fields': ('work_duties', 'requirements', 'work_schedule', 'sex', 'category', 'description')
         }),
-        ('Просмотры и метаданные', {
+        (_('Просмотры и метаданные'), {
             'fields': ('views', 'date_time', 'date_time_update')
         }),
     )
