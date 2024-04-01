@@ -9,22 +9,67 @@ from django.utils.translation import gettext as _
 # Define Admin classes for your models
 @admin.register(State)
 class StateAdmin(admin.ModelAdmin):
+    class Media:
+        js = (
+            '/static/modeltranslation/js/force_jquery.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js',
+            '/static/modeltranslation/js/tabbed_translation_fields.js',
+        )
+        css = {
+            'screen': ('/static/modeltranslation/css/tabbed_translation_fields.css',),
+        }
     list_display = ('name',)
 
 @admin.register(City)
 class CityAdmin(admin.ModelAdmin):
+    class Media:
+        js = (
+            '/static/modeltranslation/js/force_jquery.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js',
+            '/static/modeltranslation/js/tabbed_translation_fields.js',
+        )
+        css = {
+            'screen': ('/static/modeltranslation/css/tabbed_translation_fields.css',),
+        }
     list_display = ('name',)
 
 @admin.register(Sex)
 class SexAdmin(admin.ModelAdmin):
+    class Media:
+        js = (
+            '/static/modeltranslation/js/force_jquery.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js',
+            '/static/modeltranslation/js/tabbed_translation_fields.js',
+        )
+        css = {
+            'screen': ('/static/modeltranslation/css/tabbed_translation_fields.css',),
+        }
     list_display = ('name',)
 
 @admin.register(InfoLabel)
 class InfoLabelAdmin(admin.ModelAdmin):
+    class Media:
+        js = (
+            '/static/modeltranslation/js/force_jquery.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js',
+            '/static/modeltranslation/js/tabbed_translation_fields.js',
+        )
+        css = {
+            'screen': ('/static/modeltranslation/css/tabbed_translation_fields.css',),
+        }
     list_display = ('house', 'benefits')
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
+    class Media:
+        js = (
+            '/static/modeltranslation/js/force_jquery.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js',
+            '/static/modeltranslation/js/tabbed_translation_fields.js',
+        )
+        css = {
+            'screen': ('/static/modeltranslation/css/tabbed_translation_fields.css',),
+        }
     list_display = ('name',)
 
 @admin.register(Index)
@@ -41,10 +86,28 @@ class VideoAdmin(admin.ModelAdmin):
 
 @admin.register(WorkDuty)
 class WorkDutyAdmin(admin.ModelAdmin):
+    class Media:
+        js = (
+            '/static/modeltranslation/js/force_jquery.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js',
+            '/static/modeltranslation/js/tabbed_translation_fields.js',
+        )
+        css = {
+            'screen': ('/static/modeltranslation/css/tabbed_translation_fields.css',),
+        }
     list_display = ('description',)
     
 @admin.register(Requirement)
 class RequirementAdmin(admin.ModelAdmin):
+    class Media:
+        js = (
+            '/static/modeltranslation/js/force_jquery.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js',
+            '/static/modeltranslation/js/tabbed_translation_fields.js',
+        )
+        css = {
+            'screen': ('/static/modeltranslation/css/tabbed_translation_fields.css',),
+        }
     list_display = ('description',)
     
 @admin.register(Salary)
@@ -56,7 +119,16 @@ class HourlyPaymentOptionAdmin(admin.ModelAdmin):
     list_display = ('id', 'payment_type', 'last_hourly_rate_amount')
     ordering = ('hourly_rates__amount',)
     
-
+    class Media:
+        js = (
+            '/static/modeltranslation/js/force_jquery.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js',
+            '/static/modeltranslation/js/tabbed_translation_fields.js',
+        )
+        css = {
+            'screen': ('/static/modeltranslation/css/tabbed_translation_fields.css',),
+        }
+        
     def last_hourly_rate_amount(self, obj):
         # Получаем последний hourly_rate для данного HourlyPaymentOption
         last_hourly_rate = obj.hourly_rates.last()
@@ -83,6 +155,16 @@ class VacancyAdmin(admin.ModelAdmin):
     formfield_overrides = {
         models.TextField: {'widget': TinyMCE()},
     }
+    
+    class Media:
+        js = (
+            '/static/modeltranslation/js/force_jquery.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js',
+            '/static/modeltranslation/js/tabbed_translation_fields.js',
+        )
+        css = {
+            'screen': ('/static/modeltranslation/css/tabbed_translation_fields.css',),
+        }
 
     fieldsets = (
         (_('Основная информация'), {
