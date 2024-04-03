@@ -257,7 +257,7 @@
                 <span>{{vacancy.work_schedule|safe}}</span>
               </div>
             </div>
-            <div class="mb-2 reviewstars">
+            {% comment %} <div class="mb-2 reviewstars">
               <div class='mb-1 masterstar p-2' style='position: relative;'>
                 <span style='font-size: 1.2rem; padding-left: 3pt;'> <i class="far fa-briefcase"></i> <strong>{% translate "Обязанности"%}</strong></span>
                 <i class="fa-regular fa-chevron-down position-absolute end-0 p-2"></i> 
@@ -278,7 +278,7 @@
                 <div><i class="fa-solid fa-circle-small" style='font-size: 0.7rem;'></i> {{duty}}</div>
                 {% endfor %}
               </div>
-            </div>
+            </div> {% endcomment %}
             <div class="text-center"> <!-- Добавлен контейнер для центрирования -->
               <button type="button" class="btn btn-primary custom-btn-xl" data-bs-toggle="modal" data-bs-target="#applyVacancyModal">{% translate "Подать заявку"%}</button>
             </div>
