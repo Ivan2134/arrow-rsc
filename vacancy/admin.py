@@ -111,9 +111,6 @@ class RequirementAdmin(TranslationAdmin):
         }
     list_display = ('description',)
     
-@admin.register(Salary)
-class SalaryAdmin(admin.ModelAdmin):
-    list_display = ('id',)
 
 @admin.register(HourlyPaymentOption)
 class HourlyPaymentOptionAdmin(TranslationAdmin):
