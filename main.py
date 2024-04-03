@@ -8,7 +8,7 @@ import django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "arrow_rsc.settings")
 django.setup()
 
-from vacancy.models import Vacancy, Salary, HourlyPaymentOption
+from vacancy.models import Vacancy, HourlyPaymentOption
 from django.db import transaction
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -21,18 +21,23 @@ def load_json(file_path: str) -> list:
     with open(file_path) as f:
         return json.load(f)
     
-# vacancies_json = load_json(Path('backups', 'vacancies.json'))
-# with transaction.atomic():
-#     for vacancy in Vacancy.objects.all():
-#         vacancy_json = get_obj_from_list(vacancies_json, vacancy.pk)
-#         fields = ['salary_per_hour_fixed', 'salary_per_mounth_fixed', 'salary_per_mounth_max', 'salary_per_mounth_min']
-#         for field in fields:
-#             if vacancy_json[field]:
-#                 try:
-#                     salary = Salary.objects.get(currency='PLN', amount=Decimal(vacancy_json[field]))
-#                 except ObjectDoesNotExist:
-#                     salary = Salary(currency='PLN', amount=Decimal(vacancy_json[field]))
-#                     salary.save()
-#                 getattr(vacancy, field).add(salary)
-#                 vacancy.save()
-    
+vacancies_json = load_json(Path('backups', '02_04', 'vacancy_vacancys.json'))
+salaries_json = load_json(Path('backups', '02_04', 'vacancy_salarys.json'))
+hps_json = load_json(Path('backups', '02_04', 'vacancy_hourlypaymentoptions.json'))
+with transaction.atomic():
+    for vacancy in HourlyPaymentOption.objects.all():
+        vacancy_json = get_obj_from_list(hps_json, vacancy.pk)
+        amount = Decimal(get_obj_from_list(salaries_json, vacancy_json.get('hourly_rates', [1])[0]).get('amount', 1))
+        vacancy.hourly_rate = amount
+        vacancy.save()
+                
+    for vacancy in Vacancy.objects.all():
+        vacancy_json = get_obj_from_list(vacancies_json, vacancy.pk)
+        fields = ['salary_per_hour_fixed', 'salary_per_mounth_fixed', 'salary_per_mounth_max', 'salary_per_mounth_min']
+        for field in fields:
+            try:
+                amount = Decimal(get_obj_from_list(salaries_json, vacancy_json.get(field, [1])[0]).get('amount', 1))
+                setattr(vacancy, field, amount)
+            except Exception as e:
+                print(e)
+        vacancy.save()

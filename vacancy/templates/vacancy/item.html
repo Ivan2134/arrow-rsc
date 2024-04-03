@@ -216,17 +216,7 @@
                   <span class="custom-icon"><i class="far fa-coins" style="color: #0a58ca;"></i></span>
                 </div>
                 <div class="col">
-                  {% if vacancy.show_all_salary %}
-                    {% for text in vacancy.get_salary_text_all_currency %}
-                      {% if forloop.counter > 1 %}
-                        <p class="custom-text custom-salary"><strong style="color: #3f5c88; font-size: 1.2rem;">{{ text }}</strong></p>
-                      {% else %}
-                        <p class="custom-text custom-salary"><strong style="color: #0a58ca;">{{ text }}</strong></p>
-                      {% endif %}
-                    {% endfor %}
-                  {% else %}
                   <p class="custom-text custom-salary"><strong style="color: #0a58ca;">{{ vacancy.get_salary_text }}</strong></p>
-                  {% endif %} 
                 </div>
               </div>
             </div>
