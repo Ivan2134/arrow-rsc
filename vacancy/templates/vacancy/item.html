@@ -242,9 +242,7 @@
               </div>
               <div class='mb-1 mx-3 slavestar' >
                 {% for salary in vacancy.salary_per_hour.all %}
-                  {% for salary in salary.all_rates_texts %}
-                    <div><i class="fa-solid fa-circle-small" style='font-size: 0.6rem;'></i> {{salary}}</div>
-                  {% endfor %}
+                  <div><i class="fa-solid fa-circle-small" style='font-size: 0.6rem;'></i> {{salary}}</div>
                 {% endfor %}
               </div>
             </div>
