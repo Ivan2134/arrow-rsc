@@ -84,47 +84,7 @@ class PhotoAdmin(admin.ModelAdmin):
 @admin.register(Video)
 class VideoAdmin(admin.ModelAdmin):
     list_display = ('file', 'url', 'embeded')
-
-@admin.register(WorkDuty)
-class WorkDutyAdmin(TranslationAdmin):
-    class Media:
-        js = (
-            'modeltranslation_jquery/jquery.min.js',
-            'modeltranslation_jquery/jquery-ui.min.js',
-            'modeltranslation/js/tabbed_translation_fields.js',
-        )
-        css = {
-            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
-        }
-    list_display = ('description',)
     
-@admin.register(Requirement)
-class RequirementAdmin(TranslationAdmin):
-    class Media:
-        js = (
-            'modeltranslation_jquery/jquery.min.js',
-            'modeltranslation_jquery/jquery-ui.min.js',
-            'modeltranslation/js/tabbed_translation_fields.js',
-        )
-        css = {
-            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
-        }
-    list_display = ('description',)
-    
-
-@admin.register(HourlyPaymentOption)
-class HourlyPaymentOptionAdmin(TranslationAdmin):
-    list_display = ('id', 'payment_type', 'hourly_rate')
-    
-    class Media:
-        js = (
-            'modeltranslation_jquery/jquery.min.js',
-            'modeltranslation_jquery/jquery-ui.min.js',
-            'modeltranslation/js/tabbed_translation_fields.js',
-        )
-        css = {
-            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
-        }
 
 @admin.register(View)
 class ViewAdmin(admin.ModelAdmin):
@@ -161,10 +121,10 @@ class VacancyAdmin(TranslationAdmin):
             'fields': ('card_photo', 'photos', 'video', 'embeded')
         }),
         (_('Описание и оплата'), {
-            'fields': ('info_label', 'salary_per_hour', 'salary_per_mounth_min', 'salary_per_mounth_max', 'salary_per_mounth_fixed', 'salary_per_hour_fixed', 'salary_is_netto', 'default_currency')
+            'fields': ('info_label', 'salary_per_mounth_min', 'salary_per_mounth_max', 'salary_per_mounth_fixed', 'salary_per_hour_fixed', 'salary_is_netto', 'default_currency')
         }),
         (_('Детали и расписание'), {
-            'fields': ('work_duties', 'requirements', 'work_schedule', 'sex', 'category', 'description')
+            'fields': ('sex', 'category', 'description')
         }),
         (_('Просмотры и метаданные'), {
             'fields': ('views', 'date_time', 'date_time_update')
