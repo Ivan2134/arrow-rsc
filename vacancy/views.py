@@ -50,6 +50,7 @@ class VacancyListView(ListView):
         if request.GET.get('clear', '0') != '1':
             selected_categories = list(map(int, request.GET.getlist('profession', [])))
             selected_irrelevants = list(map(int, request.GET.getlist('irrelevant', [])))
+            selected_with_experience = list(map(int, request.GET.getlist('with_experience', [])))
             selected_sexes = list(map(int, request.GET.getlist('sex', [])))
             selected_states = list(map(int, request.GET.getlist('location', [])))
         else:
@@ -58,6 +59,9 @@ class VacancyListView(ListView):
         if len(selected_irrelevants) > 0:
             if selected_irrelevants[0] != 2:
                 vacancies = vacancies.filter(irrelevant=False if selected_irrelevants[0] == 1 else True)
+                
+        if len(selected_with_experience) > 0:
+            vacancies = vacancies.filter(with_experience=False if selected_with_experience[0] == 2 else True)
         
         if len(selected_categories) > 0:
             vacancies = vacancies.filter(category__id__in=selected_categories)
@@ -84,6 +88,7 @@ class VacancyListView(ListView):
             'selected_sexes': selected_sexes,
             'selected_states': selected_states,
             'selected_irrelevants': selected_irrelevants,
+            'selected_with_experience': selected_with_experience,
             'selected_nav_name': 'vacancies'
         }
         return render(request, 'vacancy/list.html', context)

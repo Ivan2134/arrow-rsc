@@ -230,6 +230,7 @@ class Vacancy(models.Model):
     description = models.TextField(verbose_name=_("Описание"), null=True, blank=True)
     active = models.BooleanField(verbose_name=_('Активно'), default=True)
     irrelevant = models.BooleanField(verbose_name=_('Не актуально'), default=False)
+    with_experience = models.BooleanField(verbose_name=_('C опытом работы'), default=False)
     views = models.ManyToManyField(View, blank=True)
     
     @property

@@ -143,6 +143,17 @@
                                 <label class="form-check-label">{% translate "Все"%}</label>
                             </div>
                         </div>
+                        <label for="with_experience"><i class="far fa-helmet-safety" style="color: #0a58ca;"></i> <strong>{% translate "Опыт работы:"%}</strong></label>
+                        <div class="scroll-container" id="with_experience">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="check1with_experience" name="with_experience" value="1" {% if 1 in selected_with_experience %}checked{% endif %}>
+                                <label class="form-check-label">{% translate "C опытом работы"%}</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="check2with_experience" name="with_experience" value="2" {% if 2 in selected_with_experience %}checked{% endif %}{% if selected_with_experience|length < 1 %}checked{% endif %}>
+                                <label class="form-check-label">{% translate "Без опыта работы"%}</label>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class='col-md-6 col-sm-12 mt-2'>
                                 <button type="submit" class="btn btn-primary w-100">{% translate "Подтвердить"%}</button>
