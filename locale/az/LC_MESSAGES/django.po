@@ -144,8 +144,6 @@ msgid "Должность"
 msgstr "Vəzifə"
 
 #: info_pages/models.py:141
-#, fuzzy
-#| msgid "Фотография"
 msgid "Фотограция"
 msgstr "Şəkil"
 
@@ -539,21 +537,15 @@ msgid "Не актуально"
 msgstr "Əlaqədar deyil"
 
 #: vacancy/models.py:233 vacancy/templates/vacancy/list.html:150
-#, fuzzy
-#| 
 msgid "C опытом работы"
-msgid "İş təcrübəsi ilə"
+msgstr "İş təcrübəsi ilə"
 
-msgid "Место работы"
-msgstr "İş yeri"
 
 #: vacancy/models.py:242
 msgid "от"
 msgstr "dan"
 
 #: vacancy/models.py:243
-#, fuzzy
-#| 
 msgid "до"
 msgstr "əvvəl"
 
@@ -622,15 +614,11 @@ msgid "Все"
 msgstr "hamısı"
 
 #: vacancy/templates/vacancy/list.html:146
-#, fuzzy
-#| 
 msgid "Опыт работы:"
 msgstr "Təcrübə"
 
 
 #: vacancy/templates/vacancy/list.html:154
-#, fuzzy
-#| msgid "Место работы"
 msgid "Без опыта работы"
 msgstr "İş təcrübəsi yoxdur"
 

@@ -543,17 +543,11 @@ msgstr "Не актуально"
 msgid "C опытом работы"
 msgstr "З досвідом роботи"
 
-#: vacancy/models.py:233 vacancy/templates/vacancy/list.html:150
-msgid "Место работы"
-msgstr "Місце роботи"
-
 #: vacancy/models.py:242
 msgid "от"
 msgstr "від"
 
 #: vacancy/models.py:243
-#, fuzzy
-#| 
 msgid "до"
 msgstr "до"
 
@@ -622,15 +616,11 @@ msgid "Все"
 msgstr "Всі"
 
 #: vacancy/templates/vacancy/list.html:146
-#, fuzzy
-#| 
 msgid "Опыт работы:"
 msgstr "Досвід роботи:"
 
 
 #: vacancy/templates/vacancy/list.html:154
-#, fuzzy
-#| 
 msgid "Без опыта работы"
 msgstr "Без досвіду роботи"
 

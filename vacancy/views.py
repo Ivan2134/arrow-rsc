@@ -54,7 +54,7 @@ class VacancyListView(ListView):
             selected_sexes = list(map(int, request.GET.getlist('sex', [])))
             selected_states = list(map(int, request.GET.getlist('location', [])))
         else:
-            selected_categories, selected_sexes, selected_states, selected_irrelevants = ([], [], [], [])
+            selected_categories, selected_sexes, selected_states, selected_irrelevants, selected_with_experience = ([], [], [], [], [])
 
         if len(selected_irrelevants) > 0:
             if selected_irrelevants[0] != 2:

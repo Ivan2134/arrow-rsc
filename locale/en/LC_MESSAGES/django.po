@@ -546,8 +546,6 @@ msgid "от"
 msgstr "from"
 
 #: vacancy/models.py:243
-#, fuzzy
-#| 
 msgid "до"
 msgstr "to"
 
@@ -617,15 +615,12 @@ msgid "Все"
 msgstr "All"
 
 #: vacancy/templates/vacancy/list.html:146
-#, fuzzy
 msgid "Опыт работы:"
 msgstr "Experience:"
 
 #: vacancy/templates/vacancy/list.html:154
-#, fuzzy
-#| msgid "Место работы"
 msgid "Без опыта работы"
-msgstr "Place of work"
+msgstr "Without work experience"
 
 #: vacancy/templates/vacancy/list.html:159
 msgid "Подтвердить"
