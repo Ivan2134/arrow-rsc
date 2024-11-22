@@ -186,6 +186,9 @@
                                     <div>
                                         <div class="card-text"><i class="bi bi-geo-alt custom-salary"></i> {{vacancy.state}}, {{vacancy.city}}</div>
                                     </div>
+                                    <div>
+                                        <div class="card-text"><i class="bi bi-person"></i> {% translate "Только для мужчин"%}</div>
+                                    </div>
                                     <div class="custom-card-footer mt-4 d-flex flex-column flex-md-row justify-content-md-between align-items-md-center">
                                         <div class="custom-salary"><i class="bi bi-cash-coin"></i> {{ vacancy.get_salary_text_for_vacancy_list }}</div>
                                         <a href="{% url 'vacancy:item' pk=vacancy.pk %}" class="btn btn-outline-dark mt-2">{% translate "Подробнее"%}</a>
