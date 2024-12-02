@@ -205,28 +205,22 @@
                     }
                     if (iti.isValidNumber()) {
                         phoneInput.value = phoneNumber;
-                    } 
+                    }
+                    if (isValid) {
+                          window.dataLayer = window.dataLayer || [];
+                          window.dataLayer.push({
+                              event: 'LeadForm'
+                      });
+                      console.log('Событие LeadForm отправлено в dataLayer');
+  
+                  } else {
+                          event.preventDefault();
+                      }
                 });
             });
         });
     </script>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-            const forms = document.querySelectorAll('form');
-            forms.forEach(form => {
-                if (!form.classList.contains('partner-form')) {
-                    form.addEventListener('submit', function (event) {
-                        window.dataLayer = window.dataLayer || [];
-                        window.dataLayer.push({
-                            'event': 'LeadForm'
-                        });
-                        console.log('Событие LeadForm отправлено в dataLayer');
-                    });
-                }
-            });
-    });
-    </script>
     
               
     {% block scripts %}{% endblock scripts %}
