@@ -189,19 +189,26 @@
                     const checkbox = form.querySelector("#check1");
                     const iti = window.intlTelInputGlobals.getInstance(phoneInput);
                     const phoneNumber = iti.getNumber();
+
+                    let isValid = true;
+                  
                     if (!nameInput.value.trim()) {
                         alert(`{% translate "Пожалуйста, введите ваше имя."%}`);
                         event.preventDefault();
+                        isValid = false;
                     } else if (!phoneNumber) {
                         alert(`{% translate "Пожалуйста, введите ваш номер телефона."%}`);
                         event.preventDefault();
+                        isValid = false;
                     } else if (!checkbox.checked) {
                         alert(`{% translate "Пожалуйста, отметьте галочку о согласии на обработку данных."%}`);
                         event.preventDefault();
+                        isValid = false;
                     }
                     if (!iti.isValidNumber()) {
                         alert(`{% translate "Пожалуйста, введите номер телефона в верном формате и выберите страну."%}`);
                         event.preventDefault();
+                        isValid = false;
                     }
                     if (iti.isValidNumber()) {
                         phoneInput.value = phoneNumber;
