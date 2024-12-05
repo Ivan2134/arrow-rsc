@@ -185,6 +185,7 @@
             forms.forEach(function (form) {
                 form.addEventListener("submit", function (event) {
                     const nameInput = form.querySelector("#name");
+                    const vacancyInput = form.querySelector("#vacancy");
                     const phoneInput = form.querySelector("input[name='phone']");
                     const checkbox = form.querySelector("#check1");
                     const iti = window.intlTelInputGlobals.getInstance(phoneInput);
@@ -194,6 +195,10 @@
                   
                     if (!nameInput.value.trim()) {
                         alert(`{% translate "Пожалуйста, введите ваше имя."%}`);
+                        event.preventDefault();
+                        isValid = false;
+                    }else if (!vacancyInput.value.trim()) {
+                        alert(`{% translate "Пожалуйста, введите желаемую вами работу."%}`);
                         event.preventDefault();
                         isValid = false;
                     } else if (!phoneNumber) {
