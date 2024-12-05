@@ -81,6 +81,7 @@
                             <form class="p-1" action="{% url 'vacancy:apply' %}" method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <input class="form-control phone-input my-2 form-sizes-media" type="text" placeholder="{% translate 'Ваше Имя'%}" aria-label="default input example" id='name', name="name">
+                                <input class="form-control" type="text" placeholder="{% if vacancy %}{{vacancy.category.name}}{% else %}{% if want_partner %}{% translate 'Введите ваше сообщение' %}{% else %}{% translate 'Введите название желаемой работы' %}{% endif %}{% endif %}" aria-label="default input example" id='vacancy' name='vacancy'>
                                 <input class="form-control phone-number-input form-sizes-media" type="text" aria-label="default input example" id='phone', name="phone">
                                 <div class="row">
                                     <div class='col-md-8 col-sm-12'>
