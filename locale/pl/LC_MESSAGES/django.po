@@ -299,14 +299,18 @@ msgid "Пожалуйста, введите ваше имя."
 msgstr "Proszę wpisać swoje imię."
 
 #: templates/base.html:179
+msgid "Пожалуйста, введите желаемую вами работу."
+msgstr "Proszę wpisać interesującą Cię pracę."
+
+#: templates/base.html:182
 msgid "Пожалуйста, введите ваш номер телефона."
 msgstr "Proszę podać swój numer telefonu."
 
-#: templates/base.html:182
+#: templates/base.html:186
 msgid "Пожалуйста, отметьте галочку о согласии на обработку данных."
 msgstr "Proszę zaznaczyć pole, aby wyrazić zgodę na przetwarzanie danych."
 
-#: templates/base.html:186
+#: templates/base.html:190
 msgid "Пожалуйста, введите номер телефона в верном формате и выберите страну."
 msgstr ""
 "Wprowadź swój numer telefonu w odpowiednim formacie i wybierz swój kraj."
