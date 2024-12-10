@@ -185,23 +185,20 @@
             forms.forEach(function (form) {
                 form.addEventListener("submit", function (event) {
                     const nameInput = form.querySelector("#name");
-                    const vacancyInput = form.querySelector("#vacancy");
+                    const vacancyInput = form.querySelector("#vacancy") || "";
                     const phoneInput = form.querySelector("input[name='phone']");
                     const checkbox = form.querySelector("#check1");
                     const iti = window.intlTelInputGlobals.getInstance(phoneInput);
                     const phoneNumber = iti.getNumber();
-
+                    const modalId = form.closest('.modal')?.id || '';
                     let isValid = true;
                   
                     if (!nameInput.value.trim()) {
                         alert(`{% translate "Пожалуйста, введите ваше имя."%}`);
                         event.preventDefault();
                         isValid = false;
-                    }else if (!vacancyInput.value.trim()) {
-                        alert(`{% translate "Пожалуйста, введите желаемую вами работу."%}`);
-                        event.preventDefault();
-                        isValid = false;
-                    } else if (!phoneNumber) {
+                    }
+                    else if (!phoneNumber) {
                         alert(`{% translate "Пожалуйста, введите ваш номер телефона."%}`);
                         event.preventDefault();
                         isValid = false;
@@ -209,6 +206,11 @@
                         alert(`{% translate "Пожалуйста, отметьте галочку о согласии на обработку данных."%}`);
                         event.preventDefault();
                         isValid = false;
+                    }
+                    if (!vacancyInput.value && (modalId =='applyModal' || modalId == 'applyVacancyModal')) {
+                                alert(`{% translate "Пожалуйста, введите желаемую вами работу."%}`);
+                                event.preventDefault();
+                                isValid = false;
                     }
                     if (!iti.isValidNumber()) {
                         alert(`{% translate "Пожалуйста, введите номер телефона в верном формате и выберите страну."%}`);
@@ -218,16 +220,18 @@
                     if (iti.isValidNumber()) {
                         phoneInput.value = phoneNumber;
                     }
-                    if (isValid) {
-                          window.dataLayer = window.dataLayer || [];
-                          window.dataLayer.push({
-                              event: 'LeadForm'
-                      });
-                      console.log('Событие LeadForm отправлено в dataLayer');
-  
-                  } else {
-                          event.preventDefault();
-                      }
+                    if (modalId !== 'applyPartnerModal') {
+                        if (isValid) {
+                              window.dataLayer = window.dataLayer || [];
+                              window.dataLayer.push({
+                                  event: 'LeadForm'
+                          });
+                          console.log('Событие LeadForm отправлено в dataLayer');
+      
+                      } else {
+                              event.preventDefault();
+                          }
+                    }
                 });
             });
         });
