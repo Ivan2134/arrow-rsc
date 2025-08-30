@@ -170,8 +170,8 @@ msgstr "Dokumenty prawne"
 #: info_pages/templates/info_pages/about_us.html:4
 #: info_pages/templates/info_pages/contacts.html:4
 #: info_pages/templates/info_pages/waranties.html:4
-msgid "Arrow RSC - О нас"
-msgstr "Arrow RSC - O nas"
+msgid "О нас"
+msgstr "O nas"
 
 #: info_pages/templates/info_pages/about_us.html:201
 msgid "Наша команда"
@@ -245,14 +245,14 @@ msgstr "Chcę zostać partnerem"
 
 #: templates/apply_modal.html:44 vacancy/templates/vacancy/list.html:89
 msgid ""
-"Я даю согласие на обработку моих персональных данных компанией Arrow-rsc Sp. "
-"z.o.o. Предоставление данных является добровольным, но необходимым для "
+"Я даю согласие на обработку моих персональных данных. "
+"Предоставление данных является добровольным, но необходимым для "
 "обработка запроса и предоставление услуги. Подробная информация об объеме и "
 "целях обработки данных нами персональные данные и права субъектов данных "
 "можно найти в нашей политике конфиденциальности."
 msgstr ""
-"Wyrażam zgodę na przetwarzanie moich danych osobowych przez Arrow-rsc Sp.z.o."
-"o. Podanie danych jest dobrowolne, ale niezbędne w celurozpatrzenie wniosku "
+"Wyrażam zgodę na przetwarzanie moich danych osobowych. "
+"Podanie danych jest dobrowolne, ale niezbędne w celurozpatrzenie wniosku "
 "i świadczenie usługi. Szczegółowe informacje o zakresie iCele przetwarzania "
 "przez nas danych osobowych i prawa osób, których dane dotycząmożna znaleźć w "
 "naszej polityce prywatności."
@@ -267,8 +267,8 @@ msgstr "Zostaw wiadomość"
 
 #: templates/base.html:8 vacancy/templates/vacancy/item.html:4
 #: vacancy/templates/vacancy/list.html:4
-msgid "Arrow RSC - Вакансии"
-msgstr "Arrow RSC - Oferty pracy"
+msgid "Вакансии"
+msgstr "Oferty pracy"
 
 #: templates/base.html:63 vacancy/models.py:278
 msgid "Вакансии"
