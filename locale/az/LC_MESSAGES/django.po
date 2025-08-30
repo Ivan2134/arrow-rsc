@@ -270,10 +270,6 @@ msgstr "Müraciətinizi təqdim edin"
 msgid "Вакансии"
 msgstr "Vakansiyalar"
 
-#: templates/base.html:65 templates/footer.html:7
-msgid "О нас"
-msgstr "Bizim haqqımızda"
-
 #: templates/base.html:68 templates/base.html:82
 msgid "Связаться"
 msgstr "Əlaqə"

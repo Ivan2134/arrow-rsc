@@ -270,10 +270,6 @@ msgstr "Zostaw wiadomość"
 msgid "Вакансии"
 msgstr "Oferty pracy"
 
-#: templates/base.html:65 templates/footer.html:7
-msgid "О нас"
-msgstr "O nas"
-
 #: templates/base.html:68 templates/base.html:82
 msgid "Связаться"
 msgstr "Kontakty"

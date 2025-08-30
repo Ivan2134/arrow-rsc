@@ -261,10 +261,6 @@ msgstr ""
 msgid "Вакансии"
 msgstr ""
 
-#: templates/base.html:65 templates/footer.html:7
-msgid "О нас"
-msgstr ""
-
 #: templates/base.html:68 templates/base.html:75
 msgid "Связаться"
 msgstr ""
