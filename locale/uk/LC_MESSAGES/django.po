@@ -273,10 +273,6 @@ msgstr "Залишити заявку"
 msgid "Вакансии"
 msgstr "Вакансії"
 
-#: templates/base.html:63 vacancy/models.py:278
-msgid "Вакансии"
-msgstr "Вакансії"
-
 #: templates/base.html:65 templates/footer.html:7
 msgid "О нас"
 msgstr "Про нас"

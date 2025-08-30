@@ -270,10 +270,6 @@ msgstr "Submit your application"
 msgid "Вакансии"
 msgstr "Vacancies"
 
-#: templates/base.html:63 vacancy/models.py:278
-msgid "Вакансии"
-msgstr "Vacancies"
-
 #: templates/base.html:65 templates/footer.html:7
 msgid "О нас"
 msgstr "About Us"
