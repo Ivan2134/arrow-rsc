@@ -1,7 +1,8 @@
 {% load static %}
 {% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,6 +28,17 @@
   <style>
     .iti.iti--allow-dropdown.iti--show-flags {
         width: 100%
+    }
+    .site-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1030;
+    }
+    /* Висоту підкоригуйте під фактичний розмір футера */
+    .content-wrapper {
+        padding-bottom: 120px;
     }
   </style>
   {% block static %}
@@ -82,18 +94,12 @@
                         <li class="nav-item {% if selected_nav_name == 'a_us' %}selected{% endif %}"><a class="nav-link text-light" href="{% url 'info:about_us' %}">{% translate "О нас"%}</a></li>
                         <li class="nav-item {% if selected_nav_name == 'contats' %}selected{% endif %}"><a class="nav-link text-light" href="{% url 'info:contacts' %}">{% translate "Контакты"%}</a></li>
                         <li class="nav-item d-block d-lg-none">
-                            <button type="button" class="btn btn-primary btn-block mt-3" data-toggle="modal" data-target="#languageModal">
-                                {% get_current_language as LANGUAGE_CODE %}
-                                <i class="fas fa-globe"></i> {{ LANGUAGE_CODE|upper }}
-                            </button>
+                            {% include 'language_modal.html' %}
                             
                         </li>
                     </ul>
                     <div class="ml-lg-3 d-none d-lg-block">
-                        <button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#languageModal">
-                            {% get_current_language as LANGUAGE_CODE %}
-                            <i class="fas fa-globe"></i> {{ LANGUAGE_CODE|upper }}
-                        </button>
+                        {% include 'language_modal.html' %}
                         
                     </div>
                     
@@ -102,11 +108,8 @@
         </div>
     </header>
     {% endblock header %}
-    {% block image_wrapper %}
-    {% endblock image_wrapper %}
-    {% include 'language_modal.html' %}
-    
-    <div class="content-wrapper my-auto" style='width:100%'>
+
+    <div class="content-wrapper" style='width:100%'>
         {% block content_wrapper %}
         {% endblock content_wrapper %}
         {% block apply_modal_block %}
@@ -115,8 +118,11 @@
         {% trans "Заявка на становление партнером" as apply_modal_title %}
         {% include 'apply_modal.html' with show_resume_modal=False apply_modal_title=apply_modal_title apply_modal_id='applyPartnerModal' want_partner=True%}
         {% endblock apply_modal_block %}
-        {% include 'footer.html' %}
     </div>
+
+    <footer class="site-footer">
+        {% include 'footer.html' %}
+    </footer>
   
     <script>
         const regularIcons = document.querySelectorAll(".fa-regular");

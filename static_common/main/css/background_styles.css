@@ -19,6 +19,5 @@
 
 
 .content-wrapper {
-    position: absolute;
-    top: 101vh; /* Перемещаем контент ниже на 10vh */
+    position: relative;
 }

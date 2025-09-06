@@ -1,28 +1,100 @@
 {% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% get_language_info_list for LANGUAGES as languages %}
 
-<div class="modal fade" id="languageModal" tabindex="-1" role="dialog" aria-labelledby="languageModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="languageModalLabel">{% trans "Choose Language" %}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+{# Load a tiny flag icon lib and size flags to occupy ~90% of the control #}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css">
+<style>
+/* Button wrapper: rounded corners, keep flag centered */
+.lang-flag-btn {
+  width:56px;
+  height:40px;
+  padding:0;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:8px;              /* rounded corners */
+  overflow:hidden;                /* crop flag to rounded shape */
+  background-color:transparent;
+  border: none;
+}
+
+/* Flag itself: made 20% smaller (previously ~90% -> now ~72%) */
+.lang-flag-btn .fi {
+  width:72%;
+  height:72%;
+  display:inline-block;
+  background-size:cover;
+  background-position:center;
+  border-radius:6px;              /* small rounding on the flag image */
+}
+
+/* Menu items: rounded and crop flags inside */
+.lang-flag-item {
+  width:46px;
+  height:36px;
+  padding:0;
+  margin:2px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:8px;
+  overflow:hidden;
+  border: none;
+  background: transparent;
+}
+
+/* Flags inside items: 20% smaller as well */
+.lang-flag-item .fi {
+  width:70%;
+  height:70%;
+  display:inline-block;
+  background-size:cover;
+  background-position:center;
+  border-radius:6px;
+}
+
+/* Dropdown background: semi-transparent and strongly blurred */
+.dropdown-menu.lang-dropdown {
+  min-width: auto;
+  padding:0.35rem;
+  background-color: rgba(255,255,255,0.06); /* semi-transparent */
+  backdrop-filter: blur(12px);              /* heavy blur */
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  border-radius:10px;
+}
+
+/* Remove default caret on dropdown button */
+.dropdown-toggle::after { display: none !important; }
+
+/* Make dropdown items visually compact and centered */
+.dropdown-item.lang-flag-item { padding: 0.25rem; }
+</style>
+
+<div class="dropdown d-inline">
+    <button class="btn btn-primary dropdown-toggle lang-flag-btn" type="button" id="langDropdown" data-bs-toggle="dropdown" aria-expanded="false" title="{{ LANGUAGE_CODE|upper }}">
+        {% if LANGUAGE_CODE == 'ru' %}<span class="fi fi-ru"></span>
+        {% elif LANGUAGE_CODE == 'en' %}<span class="fi fi-gb"></span>
+        {% elif LANGUAGE_CODE == 'uk' %}<span class="fi fi-ua"></span>
+        {% elif LANGUAGE_CODE == 'pl' %}<span class="fi fi-pl"></span>
+        {% else %}<span>{{ LANGUAGE_CODE|upper }}</span>{% endif %}
+    </button>
+    <div class="dropdown-menu dropdown-menu-right lang-dropdown" aria-labelledby="langDropdown">
+        {% for language in languages %}
+            <form action="{% url 'set_language' %}" method="post" class="m-0">
+                {% csrf_token %}
+                <input name="next" type="hidden" value="{{ redirect_to|default:request.path }}">
+                <button type="submit" name="language" value="{{ language.code }}" class="dropdown-item text-center lang-flag-item {% if language.code == LANGUAGE_CODE %}active{% endif %}">
+                    {% if language.code == 'ru' %}<span class="fi fi-ru"></span>
+                    {% elif language.code == 'en' %}<span class="fi fi-gb"></span>
+                    {% elif language.code == 'uk' %}<span class="fi fi-ua"></span>
+                    {% elif language.code == 'pl' %}<span class="fi fi-pl"></span>
+                    {% else %}{{ language.code|upper }}{% endif %}
                 </button>
-            </div>
-            <div class="modal-body">
-                <form action="{% url 'set_language' %}" method="post" id="language-form">
-                    {% csrf_token %}
-                    <input name="next" type="hidden" value="{{ redirect_to }}">
-                    {% get_current_language as LANGUAGE_CODE %}
-                    {% get_available_languages as LANGUAGES %}
-                    {% get_language_info_list for LANGUAGES as languages %}
-                    {% for language in languages %}
-                    <button type="submit" name="language" value="{{ language.code }}" class="btn btn-primary {% if language.code == LANGUAGE_CODE %} active{% endif %}">
-                    {{ language.name }}
-                    </button>
-                    {% endfor %}
-                </form>
-            </div>
-        </div>
+            </form>
+        {% endfor %}
     </div>
 </div>

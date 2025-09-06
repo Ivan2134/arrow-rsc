@@ -115,7 +115,7 @@ class VacancyAdmin(TranslationAdmin):
 
     fieldsets = (
         (_('Основная информация'), {
-            'fields': ('name', 'title', 'city', 'state', 'index', 'active', 'irrelevant', 'with_experience')
+            'fields': ('name', 'title', 'city', 'state', 'index', 'active', 'irrelevant', 'with_experience', 'required_people_count', "communication_languages" )
         }),
         (_('Медиа'), {
             'fields': ('card_photo', 'photos', 'video', 'embeded')

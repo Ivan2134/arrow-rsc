@@ -203,6 +203,17 @@ class View(models.Model):
     isp = models.CharField(max_length=256, null=True, blank=True)
     mobile = models.BooleanField(blank=True, null=True)
 
+class Language(models.Model):
+    code = models.CharField(max_length=10, unique=True, verbose_name=_('Код языка (en, ru, pl и тд.)'))
+    name = models.CharField(max_length=100, verbose_name=_('Название языка (English, Русский, Polski и тд.)'))
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Язык общения')
+        verbose_name_plural = _('Языки общения')
+
 class Vacancy(models.Model):
     name = models.CharField(verbose_name=_('Название вакансии'), max_length=300)
     title = models.CharField(verbose_name=_('Заголовок вакансии'), max_length=300)
@@ -231,6 +242,8 @@ class Vacancy(models.Model):
     active = models.BooleanField(verbose_name=_('Активно'), default=True)
     irrelevant = models.BooleanField(verbose_name=_('Не актуально'), default=False)
     with_experience = models.BooleanField(verbose_name=_('C опытом работы'), default=False)
+    required_people_count = models.PositiveIntegerField(verbose_name=_('Требуемое количество человек'), default=1)
+    communication_languages = models.ManyToManyField(Language, verbose_name=_('Языки общения'), blank=True)
     views = models.ManyToManyField(View, blank=True)
     
     @property
