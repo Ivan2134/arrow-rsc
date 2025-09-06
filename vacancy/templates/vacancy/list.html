@@ -59,16 +59,14 @@
                             </div>
                             {% endfor %}
                         </div>
-                        <label for="irrelevant"> <i class="far fa-calendar" style="color: #0a58ca;"></i> <strong>{% translate "Актуальность:"%}</strong></label>
-                        <div class="scroll-container" id="irrelevant">
+                        <label for="language"> <i class="far fa-comments" style="color: #0a58ca;"></i> <strong>{% trans "Язык общения:" %}</strong></label>
+                        <div class="scroll-container" id="language">
+                            {% for language in languages %}
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" id="check1irrelevant" name="irrelevant" value="1" {% if 1 in selected_irrelevants %}checked{% endif %}>
-                                <label class="form-check-label">{% translate "Актуально"%}</label>
+                                <input class="form-check-input" type="checkbox" id="check{{language.id}}lang" name="language" value="{{language.id}}" {% if language.id in selected_languages %}checked{% endif %}>
+                                <label class="form-check-label">{{language.name}}</label>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" id="check2irrelevant" name="irrelevant" value="2" {% if 2 in selected_irrelevants %}checked{% endif %}{% if selected_irrelevants|length < 1 %}checked{% endif %}>
-                                <label class="form-check-label">{% translate "Все"%}</label>
-                            </div>
+                            {% endfor %}
                         </div>
                         <label for="with_experience"><i class="far fa-helmet-safety" style="color: #0a58ca;"></i> <strong>{% translate "Опыт работы:"%}</strong></label>
                         <div class="scroll-container" id="with_experience">

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Salary, State, City, Sex, InfoLabel, Category, Index, Photo, Video, WorkDuty, \
+from .models import Language, Salary, State, City, Sex, InfoLabel, Category, Index, Photo, Video, WorkDuty, \
     HourlyPaymentOption, View, Vacancy, Requirement
     
 from tinymce.widgets import TinyMCE
@@ -89,6 +89,19 @@ class VideoAdmin(admin.ModelAdmin):
 @admin.register(View)
 class ViewAdmin(admin.ModelAdmin):
     list_display = ('ip', 'date_time', 'country', 'region_name', 'city', 'isp', 'mobile')
+
+@admin.register(Language)
+class LanguageAdmin(TranslationAdmin):
+    class Media:
+        js = (
+            'modeltranslation_jquery/jquery.min.js',
+            'modeltranslation_jquery/jquery-ui.min.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
+        )
+        css = {
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+        }
+    list_display = ('name',)
 
 @admin.register(Vacancy)
 class VacancyAdmin(TranslationAdmin):

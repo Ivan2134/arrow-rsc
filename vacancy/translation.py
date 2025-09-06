@@ -1,9 +1,13 @@
 from modeltranslation.translator import TranslationOptions, register
-from .models import Category, Vacancy, HourlyPaymentOption, Requirement, WorkDuty, InfoLabel, Sex, City, State
+from .models import Category, Language, Vacancy, HourlyPaymentOption, Requirement, WorkDuty, InfoLabel, Sex, City, State
 
 @register(Vacancy)
 class VacancyTranslationOptions(TranslationOptions):
     fields = ('name', 'title', 'description', 'work_schedule')
+
+@register(Language)
+class LanguageTranslationOptions(TranslationOptions):
+    fields = ('name',)
 
 @register(HourlyPaymentOption)
 class HourlyPaymentOptionTranslationOptions(TranslationOptions):

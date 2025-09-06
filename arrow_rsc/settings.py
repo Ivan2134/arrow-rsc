@@ -149,12 +149,10 @@ gettext = lambda s: s
 LANGUAGES = (
 	('ru', gettext('Russian')),
     ('en', gettext('English')),
-    ('uk', gettext('Ukrainian')),
-    ('pl', gettext('Polish')),
-    ('az', gettext('Azerbaijani')),
 )
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
 MODELTRANSLATION_AUTO_POPULATE = True
+MODELTRANSLATION_LANGUAGES = ("ru", "en", "uk", "pl", "az")
 # Timezone
 TIME_ZONE = 'UTC'
 USE_TZ = True

@@ -5,7 +5,7 @@ from django.http import HttpRequest
 from django.shortcuts import redirect, render
 from django.views.generic.list import ListView
 import requests
-from .models import Sex, Vacancy, Category, State, View
+from .models import Sex, Vacancy, Category, State, View, Language
 from django.core.mail import send_mail
 from django.utils import timezone
 from django.conf import settings
@@ -50,14 +50,16 @@ class VacancyListView(ListView):
         categories = Category.objects.all()
         states = State.objects.all()
         sexes = Sex.objects.all()
+        languages = Language.objects.all()
         if request.GET.get('clear', '0') != '1':
             selected_categories = list(map(int, request.GET.getlist('profession', [])))
             selected_irrelevants = list(map(int, request.GET.getlist('irrelevant', [])))
             selected_with_experience = list(map(int, request.GET.getlist('with_experience', [])))
             selected_sexes = list(map(int, request.GET.getlist('sex', [])))
             selected_states = list(map(int, request.GET.getlist('location', [])))
+            selected_languages = list(map(int, request.GET.getlist('language', [])))
         else:
-            selected_categories, selected_sexes, selected_states, selected_irrelevants, selected_with_experience = ([], [], [], [], [])
+            selected_categories, selected_sexes, selected_states, selected_irrelevants, selected_with_experience, selected_languages = ([], [], [], [], [], [])
 
         if len(selected_irrelevants) > 0:
             if selected_irrelevants[0] != 2:
@@ -74,6 +76,9 @@ class VacancyListView(ListView):
         
         if len(selected_states) > 0:
             vacancies = vacancies.filter(state__id__in=selected_states)
+
+        if len(selected_languages) > 0:
+            vacancies = vacancies.filter(communication_languages__id__in=selected_languages)
             
         
                 
@@ -87,11 +92,13 @@ class VacancyListView(ListView):
             'categories': categories, 
             'states': states, 
             'sexes': sexes,
+            'languages': languages,
             'selected_categories': selected_categories,
             'selected_sexes': selected_sexes,
             'selected_states': selected_states,
             'selected_irrelevants': selected_irrelevants,
             'selected_with_experience': selected_with_experience,
+            'selected_languages': selected_languages,
             'selected_nav_name': 'vacancies'
         }
         return render(request, 'vacancy/list.html', context)
